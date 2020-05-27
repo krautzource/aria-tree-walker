@@ -2,7 +2,7 @@
   color: #f012be !important;
 }
 
-[data-treewalker]:focus, [data-semantic-structure]:focus, mjx-container svg:focus {
+[data-treewalker]:focus {
   background-color: black;
   color: #ffff;
 }
@@ -12,7 +12,8 @@
   outline: 1px solid #f012be;
 }
 
-.aspirin svg:focus, .aspirin svg:focus * {
+.aspirin svg:focus,
+.aspirin svg:focus * {
   fill: #ffff;
   stroke: #ffff;
 }
@@ -25,5 +26,5 @@
 
 body {
   margin: 2em;
-  font-size: 2em;
+  font-size: 1.33em;
 }

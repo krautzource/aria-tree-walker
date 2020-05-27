@@ -1,27 +1,34 @@
 {
-  "name": "mathjax-sre-walker",
-  "version": "2.0.0",
-  "description": " A lightweight walker for server-side generated mathjax rendering",
+  "name": "aria-tree-walker",
+  "version": "1.0.0",
+  "description": "A lightweight walker for labeled aria(-owns) trees",
   "main": "lib/navigator.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx rollup --file dist/treewalker.js -f esm lib/treewalker.mjs"
+    "build": "npx rollup --file dist/treewalker.js -f esm lib/treewalker.mjs",
+    "docs": "node docs/source/generateDocs.js && cp ./dist/treewalker.js ./docs/."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/krautzource/mathjax-sre-walker.git"
+    "url": "git+https://github.com/krautzource/aria-tree-walker.git"
   },
   "keywords": [
-    "mathjax",
+    "accessibility",
+    "aria tree",
+    "aria owns",
+    "tree walker",
+    "diagrams",
+    "accessible diagram",
+    "accessible equation",
     "speech-rule-engine",
-    "accessibility"
+    "mathjax"
   ],
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/krautzource/mathjax-sre-walker/issues"
+    "url": "https://github.com/krautzource/aria-tree-walker/issues"
   },
-  "homepage": "https://github.com/krautzource/mathjax-sre-walker#readme",
+  "homepage": "https://github.com/krautzource/aria-tree-walker#readme",
   "devDependencies": {
     "jsdom": "^16.2.2",
     "mathjax-full": "^3.0.5",

@@ -1,4 +1,4 @@
-import { addTreewalker } from '../dist/treewalker.js';
+import { addTreewalker } from './treewalker.js';
 
 document
   .querySelectorAll('[data-treewalker]')
