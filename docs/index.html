@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <title>MathJax-SRE-walker</title>
+          <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+      <h1>A lightweight walker for equation layout</h1>
+      <p>For development, this demo requires a browser with support for ES6 modules. Try current Firefox, e.g., with NVDA or JAWS.</p>
+      <p><strong>Try this</strong>: focus an equation (click on it or tab to it), then use the arrow keys. If you're using a screenreader, use browse mode until you hear an equation, then switch out of virtual/browse mode to explore with arrow keys. Depending on the screenreader you may have to move the focus to the equation.</p>
+      <h2>CSS layout</h2>
+      <p>The solution to the quadratic equation</p>
+      <style>
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-inferredMrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  padding: .001em 0;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  overflow: hidden;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.1em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-msqrt {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-root {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+mjx-surd {
+  display: inline-block;
+  vertical-align: top;
+}
+
+mjx-sqrt {
+  display: inline-block;
+  padding-top: .07em;
+}
+
+mjx-sqrt > mjx-box {
+  border-top: .07em solid;
+}
+
+mjx-sqrt.mjx-tall > mjx-box {
+  padding-left: .3em;
+  margin-left: -.3em;
+}
+
+mjx-mroot {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-msup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mover {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mover:not([limits="false"]) {
+  padding-top: .1em;
+}
+
+mjx-mover:not([limits="false"]) > * {
+  display: block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2//MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c32::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "2";
+}
+
+mjx-c.mjx-c34::before {
+  padding: 0.677em 0.5em 0 0;
+  content: "4";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-cB1::before {
+  padding: 0.666em 0.778em 0 0;
+  content: "\B1";
+}
+
+mjx-c.mjx-c2062::before {
+  padding: 0 0 0 0;
+  content: "";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c221A::before {
+  padding: 0.8em 0.853em 0.2em 0;
+  content: "\221A";
+}
+
+[noIC] mjx-c.mjx-c221A:last-child::before {
+  padding-right: 0.833em;
+}
+
+mjx-c.mjx-c1D44E.TEX-I::before {
+  padding: 0.441em 0.529em 0.01em 0;
+  content: "a";
+}
+
+mjx-c.mjx-c1D44F.TEX-I::before {
+  padding: 0.694em 0.429em 0.011em 0;
+  content: "b";
+}
+
+mjx-c.mjx-c1D450.TEX-I::before {
+  padding: 0.442em 0.433em 0.011em 0;
+  content: "c";
+}
+
+mjx-c.mjx-c1D465.TEX-I::before {
+  padding: 0.442em 0.572em 0.011em 0;
+  content: "x";
+}
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+</style>
+      <mjx-container class="MathJax" jax="CHTML" display="true" tabindex="0" role="tree" data-treewalker=""><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-24" aria-label="x equals StartFraction negative b plus or minus StartRoot b squared minus 4 a c EndRoot Over 2 a EndFraction" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-0 MJX-e0b3aad3cf4c48be630a23952c4d32f4-23"><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-0" aria-label="x" role="treeitem"><mjx-c class="mjx-c1D465 TEX-I" role="presentation"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4" role="presentation"><mjx-c class="mjx-c3D" role="presentation"></mjx-c></mjx-mo><mjx-mrow space="4" role="presentation"><mjx-mfrac id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-23" aria-label="StartFraction negative b plus or minus StartRoot b squared minus 4 a c EndRoot Over 2 a EndFraction" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-18 MJX-e0b3aad3cf4c48be630a23952c4d32f4-22"><mjx-frac type="d" role="presentation"><mjx-num role="presentation"><mjx-nstrut type="d" role="presentation"></mjx-nstrut><mjx-mrow id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-18" aria-label="Numerator negative b plus or minus StartRoot b squared minus 4 a c EndRoot" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-17 MJX-e0b3aad3cf4c48be630a23952c4d32f4-4 MJX-e0b3aad3cf4c48be630a23952c4d32f4-16"><mjx-mrow id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-17" aria-label="negative b" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-2 MJX-e0b3aad3cf4c48be630a23952c4d32f4-3"><mjx-mo class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-2" aria-label="minus" role="treeitem"><mjx-c class="mjx-c2212" role="presentation"></mjx-c></mjx-mo><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-3" aria-label="b" role="treeitem"><mjx-c class="mjx-c1D44F TEX-I" role="presentation"></mjx-c></mjx-mi></mjx-mrow><mjx-mo class="mjx-n" space="3" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-4" aria-label="plus or minus" role="treeitem"><mjx-c class="mjx-cB1" role="presentation"></mjx-c></mjx-mo><mjx-msqrt space="3" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-16" aria-label="StartRoot b squared minus 4 a c EndRoot" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-15"><mjx-sqrt role="presentation"><mjx-surd role="presentation"><mjx-mo class="mjx-n" role="presentation"><mjx-c class="mjx-c221A" role="presentation"></mjx-c></mjx-mo></mjx-surd><mjx-box style="padding-top: 0.087em;" role="presentation"><mjx-mrow id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-15" aria-label="Radicand b squared minus 4 a c" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-7 MJX-e0b3aad3cf4c48be630a23952c4d32f4-8 MJX-e0b3aad3cf4c48be630a23952c4d32f4-14"><mjx-msup id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-7" aria-label="b squared" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-5 MJX-e0b3aad3cf4c48be630a23952c4d32f4-6"><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-5" aria-label="Base b" role="treeitem"><mjx-c class="mjx-c1D44F TEX-I" role="presentation"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.289em;" role="presentation"><mjx-mn class="mjx-n" size="s" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-6" aria-label="Exponent 2" role="treeitem"><mjx-c class="mjx-c32" role="presentation"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-8" aria-label="minus" role="treeitem"><mjx-c class="mjx-c2212" role="presentation"></mjx-c></mjx-mo><mjx-mrow space="3" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-14" aria-label="4 a c" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-9 MJX-e0b3aad3cf4c48be630a23952c4d32f4-12 MJX-e0b3aad3cf4c48be630a23952c4d32f4-10 MJX-e0b3aad3cf4c48be630a23952c4d32f4-13 MJX-e0b3aad3cf4c48be630a23952c4d32f4-11"><mjx-mn class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-9" aria-label="4" role="treeitem"><mjx-c class="mjx-c34" role="presentation"></mjx-c></mjx-mn><mjx-mo class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-12" aria-label="times" role="treeitem"><mjx-c class="mjx-c2062" role="presentation"></mjx-c></mjx-mo><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-10" aria-label="a" role="treeitem"><mjx-c class="mjx-c1D44E TEX-I" role="presentation"></mjx-c></mjx-mi><mjx-mo class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-13" aria-label="times" role="treeitem"><mjx-c class="mjx-c2062" role="presentation"></mjx-c></mjx-mo><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-11" aria-label="c" role="treeitem"><mjx-c class="mjx-c1D450 TEX-I" role="presentation"></mjx-c></mjx-mi></mjx-mrow></mjx-mrow></mjx-box></mjx-sqrt></mjx-msqrt></mjx-mrow></mjx-num><mjx-dbox role="presentation"><mjx-dtable role="presentation"><mjx-line type="d" role="presentation"></mjx-line><mjx-row role="presentation"><mjx-den role="presentation"><mjx-dstrut type="d" role="presentation"></mjx-dstrut><mjx-mrow id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-22" aria-label="Denominator 2 a" role="treeitem" aria-owns="MJX-e0b3aad3cf4c48be630a23952c4d32f4-19 MJX-e0b3aad3cf4c48be630a23952c4d32f4-21 MJX-e0b3aad3cf4c48be630a23952c4d32f4-20"><mjx-mn class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-19" aria-label="2" role="treeitem"><mjx-c class="mjx-c32" role="presentation"></mjx-c></mjx-mn><mjx-mo class="mjx-n" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-21" aria-label="times" role="treeitem"><mjx-c class="mjx-c2062" role="presentation"></mjx-c></mjx-mo><mjx-mi class="mjx-i" id="MJX-e0b3aad3cf4c48be630a23952c4d32f4-20" aria-label="a" role="treeitem"><mjx-c class="mjx-c1D44E TEX-I" role="presentation"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-mrow></mjx-math></mjx-container>
+      <p>is really overused as an example.</p>
+      <h2>SVG layout</h2>
+      <p>The solution to the quadratic equation</p>
+      <mjx-container class="MathJax" jax="SVG" display="true" tabindex="0" role="tree" data-treewalker=""><svg style="vertical-align: -1.575ex;" xmlns="http://www.w3.org/2000/svg" width="20.69ex" height="5.291ex" role="treeitem"  viewBox="0 -1642.5 9145 2338.5" xmlns:xlink="http://www.w3.org/1999/xlink" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-0 MJX-d9cdcd2396a6f34874791d5e36041bd7-23" aria-label="x equals StartFraction negative b plus or minus StartRoot b squared minus 4 a c EndRoot Over 2 a EndFraction"><defs><path id="MJX-1-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-1-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-1-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-1-TEX-I-1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path id="MJX-1-TEX-N-B1" d="M56 320T56 333T70 353H369V502Q369 651 371 655Q376 666 388 666Q402 666 405 654T409 596V500V353H707Q722 345 722 333Q722 320 707 313H409V40H707Q722 32 722 20T707 0H70Q56 7 56 20T70 40H369V313H70Q56 320 56 333Z"></path><path id="MJX-1-TEX-N-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-N-34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path id="MJX-1-TEX-N-2062" d=""></path><path id="MJX-1-TEX-I-1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path id="MJX-1-TEX-I-1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="math" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-24"><g data-mml-node="mi" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-0" aria-label="x" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D465" role="presentation"></use></g><g data-mml-node="mo" transform="translate(849.8, 0)" role="presentation"><use xlink:href="#MJX-1-TEX-N-3D" role="presentation"></use></g><g data-mml-node="mrow" transform="translate(1905.6, 0)" role="presentation"><g data-mml-node="mfrac" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-23" aria-label="StartFraction negative b plus or minus StartRoot b squared minus 4 a c EndRoot Over 2 a EndFraction" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-18 MJX-d9cdcd2396a6f34874791d5e36041bd7-22"><g data-mml-node="mrow" transform="translate(220, 676)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-18" aria-label="Numerator negative b plus or minus StartRoot b squared minus 4 a c EndRoot" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-17 MJX-d9cdcd2396a6f34874791d5e36041bd7-4 MJX-d9cdcd2396a6f34874791d5e36041bd7-16"><g data-mml-node="mrow" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-17" aria-label="negative b" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-2 MJX-d9cdcd2396a6f34874791d5e36041bd7-3"><g data-mml-node="mo" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-2" aria-label="minus" role="treeitem"><use xlink:href="#MJX-1-TEX-N-2212" role="presentation"></use></g><g data-mml-node="mi" transform="translate(778, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-3" aria-label="b" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D44F" role="presentation"></use></g></g><g data-mml-node="mo" transform="translate(1429.2, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-4" aria-label="plus or minus" role="treeitem"><use xlink:href="#MJX-1-TEX-N-B1" role="presentation"></use></g><g data-mml-node="msqrt" transform="translate(2429.4, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-16" aria-label="StartRoot b squared minus 4 a c EndRoot" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-15"><g transform="translate(853, 0)" role="presentation"><g data-mml-node="mrow" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-15" aria-label="Radicand b squared minus 4 a c" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-7 MJX-d9cdcd2396a6f34874791d5e36041bd7-8 MJX-d9cdcd2396a6f34874791d5e36041bd7-14"><g data-mml-node="msup" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-7" aria-label="b squared" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-5 MJX-d9cdcd2396a6f34874791d5e36041bd7-6"><g data-mml-node="mi" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-5" aria-label="Base b" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D44F" role="presentation"></use></g><g data-mml-node="mn" transform="translate(429, 289) scale(0.707)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-6" aria-label="Exponent 2" role="treeitem"><use xlink:href="#MJX-1-TEX-N-32" role="presentation"></use></g></g><g data-mml-node="mo" transform="translate(1054.8, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-8" aria-label="minus" role="treeitem"><use xlink:href="#MJX-1-TEX-N-2212" role="presentation"></use></g><g data-mml-node="mrow" transform="translate(2055, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-14" aria-label="4 a c" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-9 MJX-d9cdcd2396a6f34874791d5e36041bd7-12 MJX-d9cdcd2396a6f34874791d5e36041bd7-10 MJX-d9cdcd2396a6f34874791d5e36041bd7-13 MJX-d9cdcd2396a6f34874791d5e36041bd7-11"><g data-mml-node="mn" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-9" aria-label="4" role="treeitem"><use xlink:href="#MJX-1-TEX-N-34" role="presentation"></use></g><g data-mml-node="mo" transform="translate(500, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-12" aria-label="times" role="treeitem"><use xlink:href="#MJX-1-TEX-N-2062" role="presentation"></use></g><g data-mml-node="mi" transform="translate(500, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-10" aria-label="a" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D44E" role="presentation"></use></g><g data-mml-node="mo" transform="translate(1029, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-13" aria-label="times" role="treeitem"><use xlink:href="#MJX-1-TEX-N-2062" role="presentation"></use></g><g data-mml-node="mi" transform="translate(1029, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-11" aria-label="c" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D450" role="presentation"></use></g></g></g></g><g data-mml-node="mo" transform="translate(0, 106.5)" role="presentation"><use xlink:href="#MJX-1-TEX-N-221A" role="presentation"></use></g><rect width="3517" height="60" x="853" y="846.5" role="presentation"></rect></g></g><g data-mml-node="mrow" transform="translate(3105.2, -686)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-22" aria-label="Denominator 2 a" role="treeitem" aria-owns="MJX-d9cdcd2396a6f34874791d5e36041bd7-19 MJX-d9cdcd2396a6f34874791d5e36041bd7-21 MJX-d9cdcd2396a6f34874791d5e36041bd7-20"><g data-mml-node="mn" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-19" aria-label="2" role="treeitem"><use xlink:href="#MJX-1-TEX-N-32" role="presentation"></use></g><g data-mml-node="mo" transform="translate(500, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-21" aria-label="times" role="treeitem"><use xlink:href="#MJX-1-TEX-N-2062" role="presentation"></use></g><g data-mml-node="mi" transform="translate(500, 0)" id="MJX-d9cdcd2396a6f34874791d5e36041bd7-20" aria-label="a" role="treeitem"><use xlink:href="#MJX-1-TEX-I-1D44E" role="presentation"></use></g></g><rect width="6999.4" height="60" x="120" y="220" role="presentation"></rect></g></g></g></g></svg></mjx-container>
+      <p>is really overused as an example.</p>
+      <h2>A non-equation</h2>
+      <p>The same method works for other complex content as well.</p>
+      <figure class="house">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="388.94" height="390.87" tabindex="0" role="tree" id="wikihouse-11" aria-label="a house with a grey front wall, a dark grey roof with a red chimney ad a blue door with a round door knob" aria-owns="wikihouse-1 wikihouse-0 wikihouse-4" class="" data-treewalker=""><defs role="presentation"><linearGradient id="n" role="presentation"><stop offset="0" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#fff" stop-opacity="0" role="presentation"></stop></linearGradient><linearGradient id="m" role="presentation"><stop offset="0" stop-color="#ac4300" role="presentation"></stop><stop offset="1" stop-color="#ac4300" role="presentation"></stop></linearGradient><linearGradient id="l" role="presentation"><stop offset="0" stop-color="#fff" stop-opacity=".39" role="presentation"></stop><stop offset="1" stop-color="#fff" stop-opacity="0" role="presentation"></stop></linearGradient><linearGradient id="k" role="presentation"><stop offset="0" stop-color="#6a8fc6" role="presentation"></stop><stop offset="1" stop-color="#97b9ec" role="presentation"></stop></linearGradient><linearGradient id="i" role="presentation"><stop offset="0" stop-color="#c9c9c9" role="presentation"></stop><stop offset="1" stop-color="#002f52" role="presentation"></stop></linearGradient><linearGradient id="j" role="presentation"><stop offset="0" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#fff" stop-opacity="0" role="presentation"></stop></linearGradient><linearGradient id="g" role="presentation"><stop offset="0" stop-color="#fef9e5" role="presentation"></stop><stop offset=".18" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#fef9e5" role="presentation"></stop></linearGradient><linearGradient id="f" role="presentation"><stop offset="0" stop-color="#c9c9c9" role="presentation"></stop><stop offset="1" stop-color="#fff" role="presentation"></stop></linearGradient><linearGradient id="e" role="presentation"><stop offset="0" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#fff" role="presentation"></stop></linearGradient><linearGradient id="d" role="presentation"><stop offset="0" stop-color="#003fff" role="presentation"></stop><stop offset="1" stop-color="#fff" role="presentation"></stop></linearGradient><linearGradient id="c" role="presentation"><stop offset="0" stop-color="#ff9191" role="presentation"></stop><stop offset="1" stop-color="#b55858" role="presentation"></stop></linearGradient><linearGradient id="b" role="presentation"><stop offset="0" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#fff" stop-opacity="0" role="presentation"></stop></linearGradient><linearGradient id="a" role="presentation"><stop offset="0" stop-color="#fff" role="presentation"></stop><stop offset="1" stop-color="#c9c9c9" role="presentation"></stop></linearGradient><linearGradient id="h" role="presentation"><stop offset="0" stop-color="#ff9e00" role="presentation"></stop><stop offset="1" stop-color="#9c6000" role="presentation"></stop></linearGradient><linearGradient id="q" x1="368.21" x2="368.21" y1="476.65" y2="552.1" gradientTransform="translate(-39.83 -25.3) scale(1.102)" gradientUnits="userSpaceOnUse" xlink:href="#l" role="presentation"></linearGradient><linearGradient id="p" x1="366.43" x2="366.43" y1="638.79" y2="465.47" gradientTransform="translate(-39.83 -25.3) scale(1.102)" gradientUnits="userSpaceOnUse" xlink:href="#k" role="presentation"></linearGradient><linearGradient id="o" x1="366.69" x2="366.69" y1="640.22" y2="327.84" gradientTransform="translate(-39.83 -25.3) scale(1.102)" gradientUnits="userSpaceOnUse" xlink:href="#f" role="presentation"></linearGradient></defs>
+<g color="#000" role="presentation">
+<path fill="url(#o)" d="M520.46 487.66L368.91 336 217.37 487.66v179.82c0 1.75.36 3.4 1 4.92a12.61 12.61 0 0 0 2.69 4.02 12.61 12.61 0 0 0 4.02 2.68c1.51.64 3.17 1.01 4.92 1.01h277.83c1.75 0 3.4-.37 4.92-1a12.61 12.61 0 0 0 4.02-2.69 12.61 12.61 0 0 0 2.68-4.02c.64-1.51 1.01-3.17 1.01-4.92V487.66z" overflow="visible" style="marker:none" transform="translate(-174.44 -290.74)" id="wikihouse-0" aria-label="grey front wall" role="treeitem"></path>
+<g id="wikihouse-1" aria-label="a dark grey roof with a red chimney" role="treeitem" aria-owns="wikihouse-2 wikihouse-3">
+<path fill="#a00" d="M55.54 25.25c-1.74 0-3.38.39-4.89 1.03-1.51.64-2.88 1.5-4.03 2.65a12.65 12.65 0 0 0-3.68 8.96v159.03l67.05-67.12V37.89a12.65 12.65 0 0 0-3.68-8.95 12.55 12.55 0 0 0-4.04-2.66 12.64 12.64 0 0 0-4.92-1.03h-41.8z" overflow="visible" style="marker:none" id="wikihouse-2" aria-label="a red chimney" role="treeitem"></path>
+<path fill="#4c4c4c" d="M194.25 0a18.72 18.72 0 0 0-12.97 5.48L5.48 181.38a18.73 18.73 0 1 0 26.5 26.5l162.5-162.61 162.49 162.6a18.73 18.73 0 1 0 26.49-26.48L207.77 5.48A18.72 18.72 0 0 0 194.25 0z" overflow="visible" style="marker:none" id="wikihouse-3" aria-label="a dark grey, mono-pitched roof" role="treeitem"></path>
+</g>
+<g id="wikihouse-4" aria-label="a blue door with a doorknob" role="treeitem" aria-owns="wikihouse-5 wikihouse-8">
+<g id="wikihouse-5" aria-label="a blue door with a shimmer" role="treeitem" aria-owns="wikihouse-6 wikihouse-7">
+<path fill="url(#p)" d="M441.78 680.11H296.05V500.29c0-1.75.36-3.4 1-4.92a12.61 12.61 0 0 1 2.68-4.02 12.61 12.61 0 0 1 4.03-2.68c1.51-.64 3.17-1.01 4.92-1.01h120.47c1.75 0 3.4.37 4.92 1 1.51.65 2.88 1.54 4.02 2.69a12.61 12.61 0 0 1 2.69 4.02c.64 1.51 1 3.17 1 4.92V680.1z" overflow="visible" style="marker:none" transform="translate(-174.44 -290.74)" id="wikihouse-6" aria-label="the blue door frame" role="treeitem"></path>
+<path fill="url(#q)" d="M319.7 498.68a12.65 12.65 0 0 0-8.95 3.68 12.55 12.55 0 0 0-2.66 4.03 12.64 12.64 0 0 0-1.03 4.92v69.64h.3c2.9 11 29.34-24.45 61.55-24.45 32.2 0 58.67 35.45 61.57 24.45h.28V511.3a12.65 12.65 0 0 0-3.68-8.95 12.65 12.65 0 0 0-8.96-3.68h-98.43z" overflow="visible" style="marker:none" transform="translate(-174.44 -290.74)" id="wikihouse-7" aria-label="a shimmer on the upper third" role="treeitem"></path>
+</g>
+<g id="wikihouse-8" aria-label="a dark gray doorknob with a shimmer" role="treeitem" aria-owns="wikihouse-9 wikihouse-10">
+<path fill="#4c4c4c" d="M256.31 293.15a15.74 15.74 0 1 1-31.48 0 15.74 15.74 0 1 1 31.48 0z" overflow="visible" style="marker:none" id="wikihouse-9" aria-label="a dark gray, round doorknob" role="treeitem"></path>
+<path fill="#e6e6e6" d="M240.57 281.74c-6.3 0-11.43 5.1-11.43 11.4 0 4.28 2.5 7.9 6 9.85-.2-.36-.54-.63-.7-1a11.37 11.37 0 0 1 2.48-12.5 11.38 11.38 0 0 1 12.5-2.45c.38.16.65.46 1 .66a11.26 11.26 0 0 0-9.85-5.96z" opacity=".5" overflow="visible" style="marker:none" id="wikihouse-10" aria-label="a shimmer in the shape of a crescent moon" role="treeitem"></path>
+</g>
+</g>
+</g>
+</svg>
+
+        <figcaption><a href="https://commons.wikimedia.org/wiki/File:House.svg">barretr (Open Clip Art Library) [CC0], via Wikimedia Commons</a></figcaption>
+      </figure>
+      <h2>A chemical diagram</h2>
+      <p>Another example using a chemical diagram.</p>
+      <figure class="aspirin">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="336" height="279" viewBox="-0.5 -0.311 336 279" enable-background="new -0.5 -0.311 336 279" xml:space="preserve" tabindex="0" role="tree" id="aspirin-0" aria-label="Aspirin" aria-owns="aspirin-1 aspirin-8 aspirin-12 aspirin-13" class="" data-treewalker="" >
+<g aria="hidden" role="presentation">
+	<defs role="presentation">
+		<path id="XMLID_4_" d="M0,3.689L0,3.689L0,3.689L0,3.689L0,3.689z M337.44,280.649 M0,3.689" role="presentation"></path>
+	</defs>
+	<clipPath id="XMLID_1_" role="presentation">
+		<use xlink:href="#XMLID_4_" role="presentation"></use>
+	</clipPath>
+</g>
+<g id="aspirin-1" aria-label="Benzene ring Substitutions at positions 1 and 2." role="treeitem" aria-owns="aspirin-2 aspirin-3 aspirin-4 aspirin-5 aspirin-6 aspirin-7">
+
+<g id="aspirin-2" aria-label="Double bond to Carbon 1 and Carbon 2." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.92" y1="131.489" x2="145.56" y2="167.489" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,133.049 82.68,131.37 84.24,130.41 145.68,165.93 145.68,167.729
+	144.12,168.569 82.68,133.049 " role="presentation"></polyline>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.92" y1="141.569" x2="136.8" y2="172.529" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="81.96,142.77 83.4,140.13 137.76,171.449 136.2,174.09 81.96,142.77 " role="presentation"></polyline>
+</g>
+<g id="aspirin-3" aria-label="Single bond to Carbon 2 and Carbon 3." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="145.68" y1="167.85" x2="145.68" y2="240.21" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,168.569 145.68,167.729 147.24,168.569 147.24,241.289
+	144.12,239.609 144.12,168.569 " role="presentation"></polyline>
+</g>
+<g id="aspirin-4" aria-label="Double bond to Carbon 3 and Carbon 4." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="145.56" y1="240.569" x2="82.92" y2="276.689" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,239.609 147.24,241.289 82.68,278.609 82.68,275.01
+	144.12,239.609 " role="presentation"></polyline>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="136.8" y1="235.529" x2="82.92" y2="266.609" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="136.2,234.09 137.76,236.729 83.4,268.05 81.96,265.409 136.2,234.09 " role="presentation"></polyline>
+</g>
+<g id="aspirin-5" aria-label="Single bond to Carbon 4 and Carbon 5." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.56" y1="276.689" x2="19.92" y2="240.569" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,275.01 82.68,278.609 18.24,241.289 21.24,239.609 82.68,275.01
+	" role="presentation"></polyline>
+</g>
+<g id="aspirin-6" aria-label="Single bond to Carbon 5 and Carbon 1" role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="19.68" y1="240.21" x2="19.68" y2="167.85" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,239.609 18.24,241.289 18.24,166.89 21.24,168.569 21.24,239.609
+	" role="presentation"></polyline>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="28.44" y1="235.17" x2="28.44" y2="172.89" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="30,235.409 26.88,235.409 26.88,172.77 30,172.77 30,235.409 " role="presentation"></polyline>
+</g>
+<g id="aspirin-7" aria-label="Carbon 3 bonded to 1 hydrogen. single bonded to Carbon 4. double bonded to Carbon 2." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="19.92" y1="167.489" x2="82.56" y2="131.489" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,168.569 18.24,166.89 81.12,130.41 82.68,131.37 82.68,133.049
+	21.24,168.569 " role="presentation"></polyline>
+	</g>
+	</g>
+	<g id="aspirin-8" aria-label="Functional group Carboxylic acid." role="treeitem" aria-owns="aspirin-9 aspirin-10 aspirin-11">
+   <g id="aspirin-9" aria-label="Single bond from Carbon 1 to Benzene ring." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.68" y1="58.77" x2="82.68" y2="131.129" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="81.12,57.81 84.24,59.489 84.24,130.41 82.68,131.37 81.12,130.41
+	81.12,57.81 " role="presentation"></polyline>
+	</g>
+	<g id="aspirin-10" aria-label="Oxygen 1. double bonded to Carbon 1." role="treeitem">
+<text transform="matrix(1 0 0 1 2.1602 38.6094)" font-family="'Arial'" font-size="45" role="presentation">O</text>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="33.24" y1="35.25" x2="82.56" y2="63.449" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="32.4,36.33 33.84,33.689 83.4,62.37 81.96,65.009 32.4,36.33 " role="presentation"></polyline>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="37.68" y1="27.689" x2="86.88" y2="55.89" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="36.72,28.77 38.28,26.129 87.84,54.81 86.28,57.449 36.72,28.77 " role="presentation"></polyline>
+</g>
+	<g id="aspirin-11" aria-label="Oxygen 2 bonded to 1 hydrogen. single bonded to Carbon 1." role="treeitem">
+<text transform="matrix(1 0 0 1 128.04 38.6094)" font-family="'Arial'" font-size="45" role="presentation">OH</text>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="129.6" y1="31.649" x2="82.92" y2="58.41" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="129.12,30.089 130.56,32.729 84.24,59.489 81.12,57.81 129.12,30.089 " role="presentation"></polyline>
+	</g>
+	</g>
+<g id="aspirin-12" aria-label="Single bond from Oxygen 1 in Ester to Carbon 2 in Benzene ring." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="192.6" y1="140.729" x2="145.92" y2="167.489" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="192.12,139.169 193.56,141.81 147.24,168.569 145.68,167.729
+	145.68,165.93 192.12,139.169 " role="presentation"></polyline>
+	</g>
+	<g id="aspirin-13" aria-label="Functional group Ester." role="treeitem" aria-owns="aspirin-14 aspirin-15 aspirin-16 aspirin-17">
+<text transform="matrix(1 0 0 1 191.04 147.6895)" font-family="'Arial'" font-size="45" id="aspirin-14" aria-label="Oxygen 1." role="treeitem">O</text>
+<g id="aspirin-15" aria-label="Single bond, from to Oxygen 1 to Carbon 1." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="271.44" y1="167.489" x2="224.4" y2="140.489" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="271.56,165.93 271.56,169.409 223.44,141.689 225,139.049 271.56,165.93" role="presentation"></polyline>
+	</g>
+	<g id="aspirin-16" aria-label="Single bond, from Carbon 1 to Carbon 2." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="334.44" y1="131.489" x2="271.8" y2="167.489" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="333.84,130.049 334.56,131.37 335.28,132.689 271.56,169.409
+	271.56,165.93 333.84,130.049 " role="presentation"></polyline>
+</g>
+<g id="aspirin-17" aria-label="Oxygen 2. double bonded to Carbon 1." role="treeitem" aria-owns="aspirin-18 aspirin-19">
+<text transform="matrix(1 0 0 1 254.04 256.7695)" font-family="'Arial'" font-size="45" id="aspirin-18" aria-label="Oxygen 2." role="treeitem">O</text>
+<g id="aspirin-19" aria-label="Double bond from Oxygen 2 to Carbon 1." role="treeitem">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="276" y1="221.729" x2="276" y2="165.329" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="277.44,221.97 274.44,221.97 274.44,165.209 277.44,165.209
+	277.44,221.97 " role="presentation"></polyline>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="267.24" y1="221.729" x2="267.24" y2="165.329" role="presentation"></line>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="268.8,221.97 265.68,221.97 265.68,165.209 268.8,165.209 268.8,221.97
+	" role="presentation"></polyline>
+   </g>
+  </g>
+</g>
+</svg>
+
+        <figcaption><a href="https://commons.wikimedia.org/wiki/File:Aspirin-skeletal.svg">Originally User:Benjah-bmm27 [Public domain], via Wikimedia Commons</a></figcaption>
+      </figure>
+      <script type="module" src="example.js"></script>
+      </body>
+      </html>
+
+      

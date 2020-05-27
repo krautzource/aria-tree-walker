@@ -1,0 +1,97 @@
+<svg  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 width="336" height="279" viewBox="-0.5 -0.311 336 279" enable-background="new -0.5 -0.311 336 279" xml:space="preserve" data-semantic-speech="Aspirin" data-semantic-id="0" data-semantic-structure="(0 (1 2 3 4 5 6 7) (8 9 10 11) 12 (13 14 15 16 (17 18 19)))" >
+<g aria="hidden">
+	<defs>
+		<path id="XMLID_4_" d="M0,3.689L0,3.689L0,3.689L0,3.689L0,3.689z M337.44,280.649 M0,3.689"/>
+	</defs>
+	<clipPath id="XMLID_1_">
+		<use xlink:href="#XMLID_4_" />
+	</clipPath>
+</g>
+<g data-semantic-id="1" data-semantic-speech="Benzene ring Substitutions at positions 1 and 2.">
+
+<g data-semantic-id="2" data-semantic-speech="Double bond to Carbon 1 and Carbon 2.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.92" y1="131.489" x2="145.56" y2="167.489"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,133.049 82.68,131.37 84.24,130.41 145.68,165.93 145.68,167.729
+	144.12,168.569 82.68,133.049 "/>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.92" y1="141.569" x2="136.8" y2="172.529"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="81.96,142.77 83.4,140.13 137.76,171.449 136.2,174.09 81.96,142.77 "/>
+</g>
+<g data-semantic-id="3" data-semantic-speech="Single bond to Carbon 2 and Carbon 3.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="145.68" y1="167.85" x2="145.68" y2="240.21"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,168.569 145.68,167.729 147.24,168.569 147.24,241.289
+	144.12,239.609 144.12,168.569 "/>
+</g>
+<g data-semantic-id="4" data-semantic-speech="Double bond to Carbon 3 and Carbon 4.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="145.56" y1="240.569" x2="82.92" y2="276.689"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,239.609 147.24,241.289 82.68,278.609 82.68,275.01
+	144.12,239.609 "/>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="136.8" y1="235.529" x2="82.92" y2="266.609"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="136.2,234.09 137.76,236.729 83.4,268.05 81.96,265.409 136.2,234.09 "/>
+</g>
+<g data-semantic-id="5" data-semantic-speech="Single bond to Carbon 4 and Carbon 5.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.56" y1="276.689" x2="19.92" y2="240.569"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,275.01 82.68,278.609 18.24,241.289 21.24,239.609 82.68,275.01
+	"/>
+</g>
+<g data-semantic-id="6" data-semantic-speech="Single bond to Carbon 5 and Carbon 1">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="19.68" y1="240.21" x2="19.68" y2="167.85"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,239.609 18.24,241.289 18.24,166.89 21.24,168.569 21.24,239.609
+	"/>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="28.44" y1="235.17" x2="28.44" y2="172.89"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="30,235.409 26.88,235.409 26.88,172.77 30,172.77 30,235.409 "/>
+</g>
+<g data-semantic-id="7" data-semantic-speech="Carbon 3 bonded to 1 hydrogen. single bonded to Carbon 4. double bonded to Carbon 2.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="19.92" y1="167.489" x2="82.56" y2="131.489"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,168.569 18.24,166.89 81.12,130.41 82.68,131.37 82.68,133.049
+	21.24,168.569 "/>
+	</g>
+	</g>
+	<g data-semantic-id="8" data-semantic-speech="Functional group Carboxylic acid.">
+   <g data-semantic-id="9" data-semantic-speech="Single bond from Carbon 1 to Benzene ring.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="82.68" y1="58.77" x2="82.68" y2="131.129"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="81.12,57.81 84.24,59.489 84.24,130.41 82.68,131.37 81.12,130.41
+	81.12,57.81 "/>
+	</g>
+	<g data-semantic-id="10" data-semantic-speech="Oxygen 1. double bonded to Carbon 1.">
+<text transform="matrix(1 0 0 1 2.1602 38.6094)" font-family="'Arial'" font-size="45">O</text>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="33.24" y1="35.25" x2="82.56" y2="63.449"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="32.4,36.33 33.84,33.689 83.4,62.37 81.96,65.009 32.4,36.33 "/>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="37.68" y1="27.689" x2="86.88" y2="55.89"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="36.72,28.77 38.28,26.129 87.84,54.81 86.28,57.449 36.72,28.77 "/>
+</g>
+	<g data-semantic-id="11" data-semantic-speech="Oxygen 2 bonded to 1 hydrogen. single bonded to Carbon 1.">
+<text transform="matrix(1 0 0 1 128.04 38.6094)" font-family="'Arial'" font-size="45">OH</text>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="129.6" y1="31.649" x2="82.92" y2="58.41"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="129.12,30.089 130.56,32.729 84.24,59.489 81.12,57.81 129.12,30.089 "/>
+	</g>
+	</g>
+<g data-semantic-id="12" data-semantic-speech="Single bond from Oxygen 1 in Ester to Carbon 2 in Benzene ring.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="192.6" y1="140.729" x2="145.92" y2="167.489"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="192.12,139.169 193.56,141.81 147.24,168.569 145.68,167.729
+	145.68,165.93 192.12,139.169 "/>
+	</g>
+	<g data-semantic-id="13" data-semantic-speech="Functional group Ester.">
+<text data-semantic-id="14" data-semantic-speech="Oxygen 1." transform="matrix(1 0 0 1 191.04 147.6895)" font-family="'Arial'" font-size="45">O</text>
+<g data-semantic-id="15" data-semantic-speech="Single bond, from to Oxygen 1 to Carbon 1.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="271.44" y1="167.489" x2="224.4" y2="140.489"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="271.56,165.93 271.56,169.409 223.44,141.689 225,139.049 271.56,165.93"/>
+	</g>
+	<g data-semantic-id="16" data-semantic-speech="Single bond, from Carbon 1 to Carbon 2.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="334.44" y1="131.489" x2="271.8" y2="167.489"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="333.84,130.049 334.56,131.37 335.28,132.689 271.56,169.409
+	271.56,165.93 333.84,130.049 "/>
+</g>
+<g data-semantic-id="17" data-semantic-speech="Oxygen 2. double bonded to Carbon 1.">
+<text data-semantic-id="18" data-semantic-speech="Oxygen 2." transform="matrix(1 0 0 1 254.04 256.7695)" font-family="'Arial'" font-size="45">O</text>
+<g data-semantic-id="19" data-semantic-speech="Double bond from Oxygen 2 to Carbon 1.">
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="276" y1="221.729" x2="276" y2="165.329"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="277.44,221.97 274.44,221.97 274.44,165.209 277.44,165.209
+	277.44,221.97 "/>
+<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square" stroke-miterlimit="10" x1="267.24" y1="221.729" x2="267.24" y2="165.329"/>
+<polyline fill-rule="evenodd" clip-rule="evenodd" points="268.8,221.97 265.68,221.97 265.68,165.209 268.8,165.209 268.8,221.97
+	"/>
+   </g>
+  </g>
+</g>
+</svg>

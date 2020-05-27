@@ -1,0 +1,29 @@
+.is-activedescendant {
+  color: #f012be !important;
+}
+
+[data-semantic-structure]:focus, mjx-container svg:focus {
+  background-color: black;
+  color: #ffff;
+}
+
+.house .is-activedescendant,
+.house .is-activedescendant * {
+  outline: 1px solid #f012be;
+}
+
+.aspirin svg:focus, .aspirin svg:focus * {
+  fill: #ffff;
+  stroke: #ffff;
+}
+
+.aspirin svg .is-activedescendant,
+.aspirin svg .is-activedescendant * {
+  fill: #f012be;
+  stroke: #f012be;
+}
+
+body {
+  margin: 2em;
+  font-size: 2em;
+}

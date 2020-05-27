@@ -1,0 +1,31 @@
+{
+  "name": "mathjax-sre-walker",
+  "version": "2.0.0",
+  "description": " A lightweight walker for server-side generated mathjax rendering",
+  "main": "lib/navigator.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx rollup --file dist/treewalker.js -f esm lib/treewalker.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krautzource/mathjax-sre-walker.git"
+  },
+  "keywords": [
+    "mathjax",
+    "speech-rule-engine",
+    "accessibility"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/krautzource/mathjax-sre-walker/issues"
+  },
+  "homepage": "https://github.com/krautzource/mathjax-sre-walker#readme",
+  "devDependencies": {
+    "jsdom": "^16.2.2",
+    "mathjax-full": "^3.0.5",
+    "rollup": "^2.7.6",
+    "speech-rule-engine": "^3.0.1"
+  }
+}
