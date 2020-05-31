@@ -18,6 +18,7 @@
   stroke: #ffff;
 }
 
+.aspirin svg.is-activedescendant *,
 .aspirin svg .is-activedescendant,
 .aspirin svg .is-activedescendant * {
   fill: #f012be;
