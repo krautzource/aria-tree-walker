@@ -1,21 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const sre = require('speech-rule-engine');
-sre.setupEngine({
-  domain: 'mathspeak',
-  style: 'default',
-  locale: 'en',
-  speech: 'deep',
-  structure: true,
-  mode: 'sync',
-});
-sre.engineReady();
-
 const generateOutput = require('./sre-enrich-rewrite');
 
 const main = (texstring) => {
-  const out = generateOutput(sre, texstring);
+  const out = generateOutput(texstring);
 
   fs.writeFileSync(
     path.join(__dirname, '..', 'index.html'),
@@ -63,15 +52,6 @@ const main = (texstring) => {
   );
 };
 
-// HACK cf. zorkow/speech-rule-engine#247
-let restart = function () {
-  if (!sre.engineReady()) {
-    setTimeout(restart, 200);
-    return;
-  }
-  const texstring = process.argv[2];
-  if (!texstring) console.log('No input texstring; using default');
-  main(texstring || 'x={-b\\pm\\sqrt{b^2-4ac}\\over2a}');
-};
-
-restart();
+const texstring = process.argv[2];
+if (!texstring) console.log('No input texstring; using default');
+main(texstring || 'x={-b\\pm\\sqrt{b^2-4ac}\\over2a}');

@@ -1,3 +1,14 @@
+const sre = require('speech-rule-engine');
+sre.setupEngine({
+  domain: 'mathspeak',
+  style: 'default',
+  locale: 'en',
+  speech: 'deep',
+  structure: true,
+  mode: 'sync',
+});
+sre.engineReady();
+
 const rewrite = require('./rewriteEnrichedEquation.js');
 
 // TeX to MathML
@@ -45,7 +56,7 @@ const chtml = new CHTML({
 const svghtml = mathjax.document('', { InputJax: mml, OutputJax: svg });
 const chtmlhtml = mathjax.document('', { InputJax: mml, OutputJax: chtml });
 
-module.exports = (sre, input) => {
+module.exports = (input) => {
   const mml = tex2mml(input, true);
   const enriched = sre.toEnriched(mml);
   const mmlpretty = enriched.toString();
