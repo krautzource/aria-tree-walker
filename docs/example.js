@@ -1,8 +1,3 @@
-import { addTreewalker } from './treewalker.js';
+import { attachNavigator } from './treewalker.js';
 
-document
-  .querySelectorAll('[data-treewalker]')
-  .forEach((node) => {
-    let treebase = node.hasAttribute('aria-owns') ? node : node.querySelector('[aria-owns]');
-    addTreewalker(node, treebase);
-  });
+document.querySelectorAll('[data-treewalker]').forEach(attachNavigator);
