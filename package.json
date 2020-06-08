@@ -1,5 +1,5 @@
 {
-  "name": "aria-tree-walker",
+  "name": "@krautzource/aria-tree-walker",
   "version": "1.0.0",
   "description": "A lightweight walker for labeled aria(-owns) trees",
   "main": "lib/navigator.mjs",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "jsdom": "^16.2.2",
     "mathjax-full": "^3.0.5",
-    "rollup": "^2.12.0",
+    "rollup": "^2.15.0",
     "speech-rule-engine": "^3.0.1",
     "standard-version": "^8.0.0"
   }
