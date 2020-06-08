@@ -20,7 +20,7 @@ const main = (texstring) => {
   <body>
     <h1>A lightweight walker for labeled aria(-owns) trees</h1>
     <p>For development, this demo requires a browser with support for ES6 modules. Try current Firefox, e.g., with NVDA or JAWS.</p>
-    <p><strong>Try this</strong>: focus a diagram (click on it or tab to it), then use the arrow keys. If you're using a screenreader, use browse mode until you hear an equation, then switch out of virtual/browse mode to explore with arrow keys. Depending on the screenreader you may have to move the focus to the equation.</p>
+    <p><strong>Try this</strong>: focus a diagram (click on it or tab to it), then use the arrow keys. If you're using a screenreader, use browse mode until you encounter a diagram, then switch out of virtual/browse mode to explore with arrow keys. Depending on the screenreader you may have to move the focus to the diagram.</p>
     <h2>A simple diagram</h2>
     <p>The method works for many types of diagrams such as the following simple diagram of a house.</p>
     <figure class="house">
