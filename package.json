@@ -35,6 +35,6 @@
     "mathjax-full": "^3.0.5",
     "rollup": "^2.15.0",
     "speech-rule-engine": "^3.0.1",
-    "standard-version": "^8.0.0"
+    "standard-version": "^8.0.1"
   }
 }
