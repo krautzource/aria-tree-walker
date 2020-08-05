@@ -25,16 +25,16 @@ const main = (texstring) => {
     <p>The method works for many types of diagrams such as the following simple diagram of a house.</p>
     <figure class="house">
     ${fs.readFileSync(__dirname + '/image.svg')}
-      <figcaption><a href="https://commons.wikimedia.org/wiki/File:House.svg">barretr (Open Clip Art Library) [CC0], via Wikimedia Commons</a></figcaption>
+      <figcaption>SVG modified from <a href="https://commons.wikimedia.org/wiki/File:House.svg">barretr (Open Clip Art Library) [CC0], via Wikimedia Commons</a>.</figcaption>
     </figure>
     <h2>A chemical diagram</h2>
     <p>A more complex example are diagrams rich of structural information such as the following chemical diagram.</p>
     <figure class="aspirin">
     ${fs.readFileSync(__dirname + '/Aspirin-skeletal.svg')}
-      <figcaption><a href="https://commons.wikimedia.org/wiki/File:Aspirin-skeletal.svg">Originally User:Benjah-bmm27 [Public domain], via Wikimedia Commons</a></figcaption>
+      <figcaption>SVG modified from <a href="https://commons.wikimedia.org/wiki/File:Aspirin-skeletal.svg">Originally User:Benjah-bmm27 [Public domain], via Wikimedia Commons</a> with annotations courtesy of <a href="https://progressiveaccess.com/">Progressive Access</a>.</figcaption>
     </figure>
     <h2>An equation in SVG</h2>
-    <p>Another typical use case is equational content such as the following SVG describing the solution to the quadratic equation</p>
+    <p>Another typical use case is equational content such as the following SVG describing the solution to the quadratic equation, created with <a href="https://www.mathjax.org">MathJax</a> and <a href="https://github.com/zorkow/speech-rule-engine/">Speech Rule Engine</a> (with additional post-processing, see the doc sources here).</p>
     ${out.svg
       .replace('focusable="false"', '')
       .replace(/data-semantic-(.*?)="(.*?)" /g, '')}
