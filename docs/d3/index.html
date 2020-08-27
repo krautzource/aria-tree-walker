@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A basic tree diagram using D3</title>
+    <style>
+      .node circle {
+        fill: #999;
+      }
+
+      .node text {
+        font: 10px sans-serif;
+      }
+
+      .node--internal circle {
+        fill: #555;
+      }
+
+      .node--internal text {
+        text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+      }
+
+      .link {
+        fill: none;
+        stroke: #555;
+        stroke-opacity: 0.4;
+        stroke-width: 1.5px;
+      }
+
+      label {
+        display: block;
+      }
+
+      .is-activedescendant,
+      .is-activedescendant circle {
+        fill: #3d9970;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>aria-tree-walker and D3</h1>
+
+    <h2>Dynamic (client-side)</h2>
+    <svg
+      tabindex="0"
+      role="tree"
+      aria-label="A simple tree diagram about encyclopedia structure"
+      aria-description="Focus to navigate with arrow keys."
+      width="300"
+      height="300"
+    ></svg>
+
+    <script src="../treewalker.js" type="module"></script>
+    <script src="./d3.min.js"></script>
+    <script type="module">
+      const data = {
+        name: 'encyclopedia',
+        id: 'encyclopedia',
+        children: [
+          {
+            name: 'culture',
+            children: [
+              {
+                name: 'art',
+                children: [],
+              },
+              {
+                name: 'craft',
+                children: [],
+              },
+            ],
+          },
+          {
+            name: 'science',
+            children: [],
+          },
+        ],
+      };
+
+      // The following code is based on https://bl.ocks.org/mbostock/e9ba78a2c1070980d1b530800ce7fa2b
+      // Released under the GNU General Public License, version 3, https://opensource.org/licenses/GPL-3.0
+      // Copyright (c) 2020, M. Bostock
+      // Modifications Copyright (c) 2020 P. Krautzberger
+
+      var svg = d3.select('svg'),
+        width = +svg.attr('width'),
+        height = +svg.attr('height'),
+        g = svg.append('g').attr('transform', 'translate(-40,40)');
+
+      var tree = d3.tree().size([height, width - 100]);
+
+      var cluster = d3.cluster().size([height, width - 100]);
+
+      var stratify = d3.stratify().parentId(function (d) {
+        return d.id.substring(0, d.id.lastIndexOf('.'));
+      });
+
+      const root = d3.hierarchy(data);
+      tree(root);
+
+      var link = g
+        .selectAll('.link')
+        .data(root.descendants().slice(1))
+        .enter()
+        .append('path')
+        .attr('class', 'link')
+        .attr('d', diagonal);
+
+      var node = g
+        .selectAll('.node')
+        .data(root.descendants())
+        .enter()
+        .append('g')
+        .attr(
+          'class',
+          (d) => 'node' + (d.children ? ' node--internal' : ' node--leaf')
+        )
+        .attr('id', (d) => d.data.name)
+        .attr('role', 'treeitem')
+        .attr('aria-label', (d) => d.data.name)
+        .attr('aria-owns', (d) =>
+          d.children ? d.children.map((child) => child.data.name).join(' ') : ''
+        )
+        .attr('transform', (d) => 'translate(' + d.x + ',' + d.y + ')');
+
+      node.append('circle').attr('r', 2.5);
+
+      node
+        .append('text')
+        .attr('dy', (d) => (d.children ? '-1em' : '0.3em'))
+        .attr('x', (d) => (d.children ? d.data.name.length * 3 : 8))
+        .style('text-anchor', function (d) {
+          return d.children ? 'end' : 'start';
+        })
+        .text((d) => d.data.name);
+
+      function diagonal(d) {
+        return (
+          'M' +
+          d.x +
+          ',' +
+          d.y +
+          'C' +
+          d.x +
+          ',' +
+          d.parent.y +
+          ' ' +
+          d.parent.x +
+          ',' +
+          d.y +
+          ' ' +
+          d.parent.x +
+          ',' +
+          d.parent.y
+        );
+      }
+
+      import { attachNavigator } from '../treewalker.js';
+      document.querySelectorAll('svg').forEach(attachNavigator);
+    </script>
+  </body>
+</html>

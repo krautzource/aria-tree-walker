@@ -29,3 +29,39 @@ body {
   margin: 2em;
   font-size: 1.33em;
 }
+
+#d3 .node circle {
+  fill: #999;
+}
+
+#d3 .node text {
+  font: 10px sans-serif;
+}
+
+#d3 .node--internal circle {
+  fill: #555;
+}
+
+#d3 .node--internal text {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+#d3 .link {
+  fill: none;
+  stroke: #555;
+  stroke-opacity: 0.4;
+  stroke-width: 1.5px;
+}
+
+#d3 label {
+  display: block;
+}
+
+#d3 .is-activedescendant,
+#d3 .is-activedescendant circle {
+  fill: #3D9970;
+}
+
+#d3:focus {
+  background-color: white;
+}
