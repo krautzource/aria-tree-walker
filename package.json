@@ -31,10 +31,11 @@
   },
   "homepage": "https://github.com/krautzource/aria-tree-walker#readme",
   "devDependencies": {
-    "jsdom": "^16.3.0",
-    "mathjax-full": "^3.0.5",
-    "rollup": "^2.23.0",
-    "speech-rule-engine": "^3.0.1",
-    "standard-version": "^8.0.2"
+    "jsdom": "^16.4.0",
+    "mathjax-full": "^3.1.2",
+    "rollup": "^2.28.2",
+    "speech-rule-engine": "^3.1.1",
+    "sre-to-tree": "github:krautzource/sre-to-tree",
+    "standard-version": "^9.0.0"
   }
 }
