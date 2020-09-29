@@ -65,3 +65,7 @@ body {
 #d3:focus {
   background-color: white;
 }
+
+#tikz .is-activedescendant {
+  fill: beige !Important;
+}

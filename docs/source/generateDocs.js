@@ -46,6 +46,10 @@ const main = (texstring) => {
     ${out.chtml
       .replace(/ aria-hidden="true"/g, '')
       .replace(/data-semantic-(.*?)="(.*?)" /g, '')}
+
+    <h2>A tikz diagram</h2>
+    <p>It is also possible to leverage tikz for this purpose, combining special macros with dvisvgm. The following is a simple tree diagram; you can find the TeX source in the repository's docs folder.</p>
+    ${fs.readFileSync(__dirname + '/../tikz/tree.svg').toString().replace('<![CDATA[','').replace(']]>','').replace('<?xml version=\'1.0\' encoding=\'UTF-8\'?>','').replace('<svg', '<svg tabindex="0" data-treewalker="" id="tikz"' )}
     <script type="module" src="example.js"></script>
   </body>
 </html>
