@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA tree walker Test</title>
+</head>
+<body>
+<span role="tree" tabindex="0" aria-owns="treeitem1 treeitem2" aria-label="test tree" data-treewalker="">
+<span role="treeitem" id="treeitem1" aria-label="item 1"></span>
+<span role="treeitem" id="treeitem2" aria-label="item 2"></span>
+</span>
+<script type="module">
+import { attachNavigator } from '/docs/treewalker.js';
+document.querySelectorAll('[data-treewalker]').forEach(attachNavigator);
+</script>
+</body>
+</html>

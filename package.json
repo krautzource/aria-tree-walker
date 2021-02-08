@@ -4,7 +4,9 @@
   "description": "A lightweight walker for labeled aria(-owns) trees",
   "main": "lib/navigator.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npx http-server . &",
+    "posttest": "kill $(ps aux | grep '[h]ttp-server' | awk '{print $2}')",
+    "test": "ava",
     "build": "npx rollup --file dist/treewalker.js -f esm lib/treewalker.mjs",
     "docs": "node docs/source/generateDocs.js && npx rollup --file docs/treewalker.js -f esm lib/navigator.mjs",
     "release": "standard-version"
@@ -31,8 +33,11 @@
   },
   "homepage": "https://github.com/krautzource/aria-tree-walker#readme",
   "devDependencies": {
+    "ava": "^3.15.0",
+    "http-server": "^0.12.3",
     "jsdom": "^16.4.0",
     "mathjax-full": "^3.1.2",
+    "playwright": "^1.8.0",
     "rollup": "^2.28.2",
     "speech-rule-engine": "^3.1.1",
     "sre-to-tree": "github:krautzource/sre-to-tree",
