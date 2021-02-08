@@ -1,3 +1,17 @@
+const sirv = require('sirv');
+const polka = require('polka');
+
+const assets = sirv(__dirname+'/../', {
+  maxAge: 1,
+  immutable: true
+});
+
+polka()
+  .use(assets)
+  .listen(8080, err => {
+    if (err) throw err;
+  });
+
 const { chromium } = require('playwright');
 const test = require('ava').default;
 const browserPromise = chromium.launch({
