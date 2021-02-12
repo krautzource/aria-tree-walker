@@ -17,10 +17,13 @@ const extractAbstractTree = (node) => {
  */
 
 const recurseNodeToExtractTree = (node) => {
-  if (!node.getAttribute('aria-owns')) {
-    return new abstractNode(node.id);
-  }
   const parent = new abstractNode(node.id);
+  if (node.tagName.toUpperCase() === 'A' && node.getAttribute('href') !== '') {
+    parent.href = node.getAttribute('href');
+  }
+  if (!node.getAttribute('aria-owns')) {
+    return parent;
+  }
   node
     .getAttribute('aria-owns')
     .split(' ')
@@ -41,6 +44,7 @@ class abstractNode {
   constructor(name) {
     this.name = name;
     this.parent = null;
+    this.href = null;
     this.children = [];
   }
 }
@@ -80,6 +84,12 @@ class abstractTree {
       }
     }
   }
+
+  activate() {
+    if (this.active.href) {
+      window.location.href = this.active.href;
+    }
+  }
 }
 
 /**
@@ -105,7 +115,7 @@ class navigator {
 
   move(event) {
     this.highlight(false);
-    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+    if ([32, 37, 38, 39, 40, 13, 32].indexOf(event.keyCode) > -1) {
       event.preventDefault();
     }
     switch (event.keyCode) {
@@ -120,6 +130,10 @@ class navigator {
         break;
       case 40: //down
         this.tree.down();
+        break;
+      case 32: //space
+      case 13: //enter
+        this.tree.activate();
         break;
     }
     this.highlight(true);

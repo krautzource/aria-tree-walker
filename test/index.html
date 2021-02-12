@@ -10,6 +10,12 @@
 <span role="treeitem" id="treeitem1" aria-label="item 1"></span>
 <span role="treeitem" id="treeitem2" aria-label="item 2"></span>
 </span>
+
+<span role="tree" tabindex="0" aria-owns="treeitem3 treeitem4" aria-label="test tree" data-treewalker="">
+    <span role="treeitem" id="treeitem3" aria-label="item 4"></span>
+    <a role="treeitem" id="treeitem4" aria-label="item 3" href="https://example.com"></a>
+</span>
+
 <script type="module">
 import { attachNavigator } from '/docs/treewalker.js';
 document.querySelectorAll('[data-treewalker]').forEach(attachNavigator);

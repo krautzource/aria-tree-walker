@@ -41,3 +41,40 @@ test('focus and arrow down', pageMacro, async (t, page) => {
     const activedescendantId = await page.evaluate( () => { return document.querySelector('[data-treewalker]').ariaActiveDescendantElement.id });
     t.is(activedescendantId, 'treeitem1');
   });
+
+
+test('links: check tabindex', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowRight');
+  const tabindex = await page.evaluate( () => { return document.querySelectorAll('[data-treewalker]')[1].ariaActiveDescendantElement.getAttribute('tabindex') });
+  console.log(tabindex)
+  t.is(tabindex, '-1');
+});
+
+test('links: activating  with ENTER', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Enter');
+  await page.waitForNavigation({waitUntil: 'load'});
+  const location = await page.evaluate( () => document.location.toString());
+  t.is(location, 'https://example.com/');
+});
+
+
+test('links: activating with SPACE', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Space');
+  await page.waitForNavigation({waitUntil: 'load'});
+  const location = await page.evaluate( () => document.location.toString());
+  t.is(location, 'https://example.com/');
+});
