@@ -1,14 +1,14 @@
 const sirv = require('sirv');
 const polka = require('polka');
 
-const assets = sirv(__dirname+'/../', {
+const assets = sirv(__dirname + '/../', {
   maxAge: 1,
-  immutable: true
+  immutable: true,
 });
 
 polka()
   .use(assets)
-  .listen(8080, err => {
+  .listen(8080, (err) => {
     if (err) throw err;
   });
 
@@ -33,15 +33,16 @@ test('check test setup', pageMacro, async (t, page) => {
   t.is(await page.title(), 'ARIA tree walker Test');
 });
 
-
 test('focus and arrow down', pageMacro, async (t, page) => {
-    await page.goto('localhost:8080/test/');
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('ArrowDown');
-    const activedescendantId = await page.evaluate( () => { return document.querySelector('[data-treewalker]').ariaActiveDescendantElement.id });
-    t.is(activedescendantId, 'treeitem1');
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  const activedescendantId = await page.evaluate(() => {
+    return document.querySelector('[data-treewalker]')
+      .ariaActiveDescendantElement.id;
   });
-
+  t.is(activedescendantId, 'treeitem1');
+});
 
 test('links: check tabindex', pageMacro, async (t, page) => {
   await page.goto('localhost:8080/test/');
@@ -49,8 +50,12 @@ test('links: check tabindex', pageMacro, async (t, page) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
-  const tabindex = await page.evaluate( () => { return document.querySelectorAll('[data-treewalker]')[1].ariaActiveDescendantElement.getAttribute('tabindex') });
-  console.log(tabindex)
+  const tabindex = await page.evaluate(() => {
+    return document
+      .querySelectorAll('[data-treewalker]')[1]
+      .ariaActiveDescendantElement.getAttribute('tabindex');
+  });
+  console.log(tabindex);
   t.is(tabindex, '-1');
 });
 
@@ -61,11 +66,10 @@ test('links: activating  with ENTER', pageMacro, async (t, page) => {
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Enter');
-  await page.waitForNavigation({waitUntil: 'load'});
-  const location = await page.evaluate( () => document.location.toString());
+  await page.waitForNavigation({ waitUntil: 'load' });
+  const location = await page.evaluate(() => document.location.toString());
   t.is(location, 'https://example.com/');
 });
-
 
 test('links: activating with SPACE', pageMacro, async (t, page) => {
   await page.goto('localhost:8080/test/');
@@ -74,7 +78,7 @@ test('links: activating with SPACE', pageMacro, async (t, page) => {
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Space');
-  await page.waitForNavigation({waitUntil: 'load'});
-  const location = await page.evaluate( () => document.location.toString());
+  await page.waitForNavigation({ waitUntil: 'load' });
+  const location = await page.evaluate(() => document.location.toString());
   t.is(location, 'https://example.com/');
 });
