@@ -4,6 +4,7 @@
   "description": "A lightweight walker for labeled aria(-owns) trees",
   "main": "lib/navigator.mjs",
   "scripts": {
+    "pretest": "npx rollup --file docs/treewalker.js -f esm lib/navigator.mjs",
     "test": "ava",
     "build": "npx rollup --file dist/treewalker.js -f esm lib/navigator.mjs",
     "docs": "node docs/source/generateDocs.js && npx rollup --file docs/treewalker.js -f esm lib/navigator.mjs",
