@@ -20,6 +20,7 @@ const recurseNodeToExtractTree = (node) => {
   const parent = new abstractNode(node.id);
   if (node.tagName.toUpperCase() === 'A' && node.getAttribute('href') !== '') {
     parent.href = node.getAttribute('href');
+    node.setAttribute('tabindex', '-1');
   }
   if (!node.getAttribute('aria-owns')) {
     return parent;
@@ -85,7 +86,7 @@ class abstractTree {
     }
   }
 
-  activate() {
+  activateLink() {
     if (this.active.href) {
       window.location.href = this.active.href;
     }
@@ -131,9 +132,9 @@ class navigator {
       case 40: //down
         this.tree.down();
         break;
-      case 32: //space
+      case 32: // space
       case 13: //enter
-        this.tree.activate();
+        this.tree.activateLink();
         break;
     }
     this.highlight(true);
