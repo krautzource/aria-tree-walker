@@ -33,6 +33,15 @@ test('check test setup', pageMacro, async (t, page) => {
   t.is(await page.title(), 'ARIA tree walker Test');
 });
 
+test('catch errors', pageMacro, async (t, page) => {
+  page.on('pageerror', (exception) => {
+    console.log(`Uncaught exception: "${exception}"`);
+    t.fail();
+  });
+  await page.goto('localhost:8080/test/');
+  t.pass();
+});
+
 test('focus and arrow down', pageMacro, async (t, page) => {
   await page.goto('localhost:8080/test/');
   await page.keyboard.press('Tab');

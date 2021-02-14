@@ -16,6 +16,9 @@
     <a role="treeitem" id="treeitem4" aria-label="item 3" href="https://example.com"></a>
 </span>
 
+<!-- test error catching -->
+<span role="tree" aria-label="bad tree" data-treewalker=""></span>
+
 <script type="module">
 import { attachNavigator } from '/docs/treewalker.js';
 document.querySelectorAll('[data-treewalker]').forEach(attachNavigator);
