@@ -100,6 +100,7 @@ class abstractTree {
  */
 function attachNavigator(node) {
   new navigator(node);
+  node.setAttribute('tabindex', '0');
 }
 
 class navigator {
