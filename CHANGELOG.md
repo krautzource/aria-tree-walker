@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/krautzource/aria-tree-walker/compare/v1.0.0...v2.0.0) (2021-02-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* package name now scoped.
+* remove ./dist
+* navigator, attachNavigator now expect (just) DOM node.
+
+### Features
+
+* revise distribution ([b7e763b](https://github.com/krautzource/aria-tree-walker/commit/b7e763b225e584dd620c09829aa6b1758aac4580)), closes [#11](https://github.com/krautzource/aria-tree-walker/issues/11)
+* **attachNavigator:** add tabindex ([be28a52](https://github.com/krautzource/aria-tree-walker/commit/be28a52b3756afc9c4afb337da1f606374a27700)), closes [#24](https://github.com/krautzource/aria-tree-walker/issues/24)
+* add basic test setup ([c83ad05](https://github.com/krautzource/aria-tree-walker/commit/c83ad05384185f5456bea4c628a1fa63f1c930a7)), closes [#8](https://github.com/krautzource/aria-tree-walker/issues/8)
+* remove ./dist ([54d5384](https://github.com/krautzource/aria-tree-walker/commit/54d5384dedd8bfaa1a3e6503587dc6ac56fbc759)), closes [#9](https://github.com/krautzource/aria-tree-walker/issues/9)
+* revise module structure and base API ([d0fd65e](https://github.com/krautzource/aria-tree-walker/commit/d0fd65ef4c35b387f2bedb06fec1b7875f6b1f38)), closes [#5](https://github.com/krautzource/aria-tree-walker/issues/5)
+* support anchors ([85f4d75](https://github.com/krautzource/aria-tree-walker/commit/85f4d7526c738d7247a66afa39cd5e8d918a3153)), closes [#22](https://github.com/krautzource/aria-tree-walker/issues/22)
+
+
+### Bug Fixes
+
+* handle (some) bad trees ([1ab937e](https://github.com/krautzource/aria-tree-walker/commit/1ab937ecd5309e704e848d2f0cdda8bbd989bfd2)), closes [#18](https://github.com/krautzource/aria-tree-walker/issues/18)
+* **generateDocs:** update wording ([5653260](https://github.com/krautzource/aria-tree-walker/commit/565326055b50c54dde51f0c6552ac8e0837fba73)), closes [#7](https://github.com/krautzource/aria-tree-walker/issues/7)
+
+
+* feat!(package.json): add scope to name ([c36f966](https://github.com/krautzource/aria-tree-walker/commit/c36f9666f5f658f22d2797f534035b8ca4aa063d)), closes [#11](https://github.com/krautzource/aria-tree-walker/issues/11)
+
 ## 1.0.0 (2020-06-01)
 
 
