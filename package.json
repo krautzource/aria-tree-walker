@@ -11,7 +11,7 @@
     "test": "ava",
     "build": "npx rollup -c rollup.config.js",
     "postbuild": "npm run declarations",
-    "docs": "node docs/source/generateDocs.js && npx rollup -c rollup.config.js",
+    "docs": "node docs/source/generateDocs.js && npx rollup -c rollup.config.js && cp ./dist/aria-tree-walker.esm.js ./docs/treewalker.js",
     "release": "standard-version"
   },
   "repository": {
