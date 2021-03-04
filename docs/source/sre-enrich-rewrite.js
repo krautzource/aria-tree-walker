@@ -9,7 +9,7 @@ sre.setupEngine({
 });
 sre.engineReady();
 
-const rewrite = require('sre-to-tree');
+const rewrite = require('@krautzource/sre-to-tree');
 
 // TeX to MathML
 const TeX = require('mathjax-full/js/input/tex.js').TeX;
