@@ -47,25 +47,27 @@ test('focus and arrow down', pageMacro, async (t, page) => {
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
   const activedescendantId = await page.evaluate(() => {
-    return document.querySelector('[data-treewalker]')
-      .ariaActiveDescendantElement.id;
+    return document.activeElement.getAttribute('data-owns-id');
   });
   t.is(activedescendantId, 'treeitem1');
 });
 
 test('links: check tabindex', pageMacro, async (t, page) => {
   await page.goto('localhost:8080/test/');
+  let tabindex = await page.evaluate(() => {
+    return document
+      .querySelector('a').getAttribute('tabindex');
+  });
+  t.is(tabindex, '-1');
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
-  const tabindex = await page.evaluate(() => {
+  tabindex = await page.evaluate(() => {
     return document
-      .querySelectorAll('[data-treewalker]')[1]
-      .ariaActiveDescendantElement.getAttribute('tabindex');
+      .querySelector('a').getAttribute('tabindex');
   });
-  console.log(tabindex);
-  t.is(tabindex, '-1');
+  t.is(tabindex, '0');
 });
 
 test('links: activating  with ENTER', pageMacro, async (t, page) => {
