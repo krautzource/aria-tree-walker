@@ -2,7 +2,8 @@
   color: #f012be !important;
 }
 
-[data-treewalker]:focus {
+[data-treewalker]:focus,
+[data-treewalker]:focus-within {
   background-color: black;
   color: #ffff;
 }
@@ -13,7 +14,9 @@
 }
 
 .aspirin svg:focus,
-.aspirin svg:focus * {
+.aspirin svg:focus *,
+.aspirin svg:focus-within,
+.aspirin svg:focus-within * {
   fill: #ffff;
   stroke: #ffff;
 }
@@ -62,7 +65,8 @@ body {
   fill: #3D9970;
 }
 
-#d3:focus {
+#d3:focus,
+#d3:focus-within {
   background-color: white;
 }
 

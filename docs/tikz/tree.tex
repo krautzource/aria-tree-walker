@@ -2,7 +2,7 @@
 \usepackage{pgfplots}
 \usepackage{tikz}
 \pgfplotsset{compat=1.16}
-\newenvironment{svggroup}[3]{\special{dvisvgm:raw <g id="#1" aria-label="#2" aria-owns="#3">}}{\special{dvisvgm:raw </g>}}
+\newenvironment{svggroup}[3]{\special{dvisvgm:raw <g data-owns-id="#1" aria-label="#2" data-owns="#3">}}{\special{dvisvgm:raw </g>}}
 
 \usetikzlibrary {arrows.meta,trees}
 

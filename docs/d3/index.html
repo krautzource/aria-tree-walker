@@ -47,6 +47,7 @@
       role="tree"
       aria-label="A simple tree diagram about encyclopedia structure"
       aria-description="Focus to navigate with arrow keys."
+      data-owns="encyclopedia"
       width="300"
       height="300"
     ></svg>
@@ -116,10 +117,10 @@
           'class',
           (d) => 'node' + (d.children ? ' node--internal' : ' node--leaf')
         )
-        .attr('id', (d) => d.data.name)
+        .attr('data-owns-id', (d) => d.data.name)
         .attr('role', 'treeitem')
         .attr('aria-label', (d) => d.data.name)
-        .attr('aria-owns', (d) =>
+        .attr('data-owns', (d) =>
           d.children ? d.children.map((child) => child.data.name).join(' ') : ''
         )
         .attr('transform', (d) => 'translate(' + d.x + ',' + d.y + ')');
