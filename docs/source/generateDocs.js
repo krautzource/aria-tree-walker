@@ -14,11 +14,11 @@ const main = (texstring) => {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>ARIA (owns) Tree walker</title>
+      <title>ARIA Tree walker</title>
       <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>A lightweight walker for labeled aria(-owns) trees</h1>
+    <h1>A lightweight walker for labeled ARIA trees</h1>
     <p>For development, this demo requires a browser with support for ES6 modules. Try current Firefox, e.g., with NVDA or JAWS.</p>
     <p><strong>Try this</strong>: focus a diagram (click on it or tab to it), then use the arrow keys. If you're using a screenreader, use browse mode until you encounter a diagram, then switch out of virtual/browse mode to explore with arrow keys. Depending on the screenreader you may have to move the focus to the diagram.</p>
     <h2>A simple diagram</h2>

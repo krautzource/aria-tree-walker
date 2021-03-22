@@ -68,7 +68,7 @@ module.exports = (input) => {
     containerWidth: 80 * 16
   });
 
-  rewrite(svgnode);
+  rewrite(svgnode.firstElementChild);
 
   const chtmlnode = chtmlhtml.convert(mmlpretty, {
     display: true,
