@@ -1,6 +1,6 @@
 {
   "name": "@krautzource/aria-tree-walker",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A lightweight walker for labeled aria(-owns) trees",
   "main": "dist/aria-tree-walker.cjs.js",
   "module": "dist/aria-tree-walker.esm.js",
