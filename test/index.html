@@ -6,14 +6,14 @@
     <title>ARIA tree walker Test</title>
 </head>
 <body>
-<span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree">
-<span role="treeitem" data-owns-id="treeitem1" aria-label="item 1"></span>
-<span role="treeitem" data-owns-id="treeitem2" aria-label="item 2"></span>
+<span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 1">
+<span role="treeitem" data-owns-id="treeitem1" aria-label="item 1.1"></span>
+<span role="treeitem" data-owns-id="treeitem2" aria-label="item 1.2"></span>
 </span>
 
-<span role="tree" data-owns="treeitem3 treeitem4" aria-label="test tree">
-    <span role="treeitem" data-owns-id="treeitem3" aria-label="item 4"></span>
-    <a role="treeitem" data-owns-id="treeitem4" aria-label="item 3" href="https://example.com"></a>
+<span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 2">
+    <span role="treeitem" data-owns-id="treeitem1" aria-label="item 2.1"></span>
+    <a role="treeitem" data-owns-id="treeitem2" aria-label="item 2.1" href="https://example.com"></a>
 </span>
 
 <!-- test error catching -->
