@@ -119,6 +119,7 @@
         )
         .attr('data-owns-id', (d) => d.data.name)
         .attr('role', 'treeitem')
+        .attr('aria-level', d => d.depth+1)
         .attr('aria-label', (d) => d.data.name)
         .attr('data-owns', (d) =>
           d.children ? d.children.map((child) => child.data.name).join(' ') : ''
