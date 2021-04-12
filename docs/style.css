@@ -1,4 +1,4 @@
-.is-activedescendant {
+.is-activedescendant, .is-highlight {
   color: #f012be !important;
 }
 

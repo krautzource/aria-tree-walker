@@ -62,4 +62,4 @@ const main = (texstring) => {
 
 const texstring = process.argv[2];
 if (!texstring) console.log('No input texstring; using default');
-main(texstring || 'x={-b\\pm\\sqrt{b^2-4ac}\\over2a}');
+main(texstring || '\\begin{equation}x={-b\\pm\\sqrt{b^2-4ac}\\over2a} \\tag{1} \\end{equation}');

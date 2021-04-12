@@ -20,7 +20,7 @@ const liteAdaptor = require('mathjax-full/js/adaptors/liteAdaptor.js')
 const STATE = require('mathjax-full/js/core/MathItem.js').STATE;
 const AllPackages = require('mathjax-full/js/input/tex/AllPackages.js')
   .AllPackages.filter( x => x!=='bussproofs'); // NOTE bussproofs needs getBBox() method
-const tex = new TeX({ packages: AllPackages });
+const tex = new TeX({ packages: AllPackages, tagSide: 'left', });
 const html = new HTMLDocument('', liteAdaptor(), { InputJax: tex });
 const MmlVisitor = require('mathjax-full/js/core/MmlTree/SerializedMmlVisitor.js')
   .SerializedMmlVisitor;
