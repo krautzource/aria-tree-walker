@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/krautzource/aria-tree-walker/compare/v3.0.1...v3.1.0) (2021-04-12)
+
+
+### Features
+
+* **navigator:** add subtree highlighting ([bb83ad2](https://github.com/krautzource/aria-tree-walker/commit/bb83ad2b254e17312c4c11010ebf8b648499184d)), closes [#21](https://github.com/krautzource/aria-tree-walker/issues/21)
+
 ### [3.0.1](https://github.com/krautzource/aria-tree-walker/compare/v3.0.0...v3.0.1) (2021-03-31)
 
 
