@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ARIA tree walker Test</title>
-</head>
-<body>
-<span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 1">
-<span role="treeitem" data-owns-id="treeitem1" aria-label="item 1.1"></span>
-<span role="treeitem" data-owns-id="treeitem2" aria-label="item 1.2"></span>
-</span>
+  </head>
+  <body>
+    <span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 1">
+      <span
+        role="treeitem"
+        data-owns-id="treeitem1"
+        data-owns="treeitem3"
+        aria-label="item 1.1"
+      ></span>
+      <span
+        role="treeitem"
+        data-owns-id="treeitem2"
+        aria-label="item 1.2"
+      ></span>
+      <span
+        role="treeitem"
+        data-owns-id="treeitem3"
+        aria-label="item 1.1.1"
+      ></span>
+    </span>
 
-<span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 2">
-    <span role="treeitem" data-owns-id="treeitem1" aria-label="item 2.1"></span>
-    <a role="treeitem" data-owns-id="treeitem2" aria-label="item 2.1" href="https://example.com"></a>
-</span>
+    <span role="tree" data-owns="treeitem1 treeitem2" aria-label="test tree 2">
+      <span
+        role="treeitem"
+        data-owns-id="treeitem1"
+        aria-label="item 2.1"
+      ></span>
+      <a
+        role="treeitem"
+        data-owns-id="treeitem2"
+        aria-label="item 2.1"
+        href="https://example.com"
+      ></a>
+    </span>
 
-<!-- test error catching -->
-<span role="tree" aria-label="bad tree"></span>
+    <!-- test error catching -->
+    <span role="tree" aria-label="bad tree"></span>
 
-<script type="module">
-import { attachNavigator } from '/dist/aria-tree-walker.esm.js';
-document.querySelectorAll('[role="tree"]').forEach(attachNavigator);
-</script>
-</body>
+    <script type="module">
+      import { attachNavigator } from "/dist/aria-tree-walker.esm.js";
+      document.querySelectorAll('[role="tree"]').forEach(attachNavigator);
+    </script>
+  </body>
 </html>

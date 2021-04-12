@@ -93,3 +93,25 @@ test('links: activating with SPACE', pageMacro, async (t, page) => {
   const location = await page.evaluate(() => document.location.toString());
   t.is(location, 'https://example.com/');
 });
+
+test('highlighting: tree', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  let classnameTree = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"]').className);
+  t.is(classnameTree, 'is-highlight is-activedescendant');
+  let classnameTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').className);
+  t.is(classnameTreeitem, 'is-highlight');
+  await page.keyboard.press('ArrowDown');
+  classnameTree = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"]').className);
+  classnameTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').className)
+  t.is(classnameTree, '');
+  t.is(classnameTreeitem, 'is-highlight is-activedescendant');
+});
+
+test('highlighting: subtreeitem not descendant', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  const classname = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem3"]').className);
+  t.is(classname, 'is-highlight');
+});
