@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/krautzource/aria-tree-walker/compare/v3.1.0...v3.1.1) (2021-04-16)
+
+
+### Bug Fixes
+
+* tolerate bad markup ([9377701](https://github.com/krautzource/aria-tree-walker/commit/9377701742014a5eb4e97fb0fda7bca9b5f09573)), closes [#36](https://github.com/krautzource/aria-tree-walker/issues/36)
+
 ## [3.1.0](https://github.com/krautzource/aria-tree-walker/compare/v3.0.1...v3.1.0) (2021-04-12)
 
 
