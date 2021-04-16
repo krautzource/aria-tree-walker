@@ -39,6 +39,10 @@ test('catch errors', pageMacro, async (t, page) => {
     t.fail();
   });
   await page.goto('localhost:8080/test/');
+  await page.evaluate(() => {
+    document.querySelector('[aria-label="bad tree 2"]').focus();
+    document.querySelector('[aria-label="bad tree 3"]').focus();
+  });
   t.pass();
 });
 
