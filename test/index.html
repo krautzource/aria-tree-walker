@@ -41,6 +41,8 @@
 
     <!-- test error catching -->
     <span role="tree" aria-label="bad tree"></span>
+    <span role="tree" data-owns aria-label="bad tree 2"></span>
+    <span role="tree" data-owns="notarget" aria-label="bad tree 3"></span>
 
     <script type="module">
       import { attachNavigator } from "/dist/aria-tree-walker.esm.js";
