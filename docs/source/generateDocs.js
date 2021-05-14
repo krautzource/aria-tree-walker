@@ -19,8 +19,22 @@ const main = (texstring) => {
   </head>
   <body>
     <h1>A lightweight walker for labeled ARIA trees</h1>
-    <p>This demo requires a browser with support for ES6 modules. Try current Firefox, e.g., with NVDA or JAWS. Other builds are available, see <a href="https://github.com/krautzource/">github.com/krautzource/aria-tree-walker</a>.</p>
+    <p>This demo requires a browser with support for ES6 modules; anything not IE should work. Other builds of this library are available, see <a href="https://github.com/krautzource/">github.com/krautzource/aria-tree-walker</a>.</p>
+    <p>For screenreader users, any recent release should work, e.g., NVDA, JAWS, Orca; for VoiceOver the instructions work on non-Safari browsers. On mobile, ARIA trees are not well supported in general.</p>
     <p><strong>Try this</strong>: focus a diagram (click on it or tab to it), then use the arrow keys. If you're using a screenreader, use browse mode until you encounter a diagram, then switch out of virtual/browse mode to explore with arrow keys. Depending on the screenreader you may have to move the focus to the diagram.</p>
+    <p>If you are <strong>not</strong> a screenreader user, use the options below to get similar results.</p>
+    <fieldset>
+      <legend>Options for non-screenreader user</legend>
+      <div>
+        <input type="checkbox" id="speechSynth" name="speechSynth">
+        <label for="speechSynth">Speech Synthesis</label>
+      </div>
+      <div>
+        <input type="checkbox" id="subtitle" name="enableSubtitle">
+        <label for="subtitle">Subtitles</label>
+      </div>
+    </fieldset>
+  
     <h2>A simple diagram</h2>
     <p>The method works for many types of diagrams such as the following simple diagram of a house.</p>
     <figure class="house">
@@ -53,6 +67,58 @@ const main = (texstring) => {
     <p>It is also possible to leverage tikz for this purpose, combining special macros with dvisvgm. The following is a simple tree diagram; you can find the TeX source in the repository's docs folder.</p>
     ${fs.readFileSync(__dirname + '/../tikz/tree.svg').toString().replace('<![CDATA[','').replace(']]>','').replace('<?xml version=\'1.0\' encoding=\'UTF-8\'?>','').replace('<svg', '<svg data-treewalker="" id="tikz"' )}
     <script type="module" src="example.js"></script>
+    <script>
+      const speechObserver = new MutationObserver(function(mutationRecordArray) {
+        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
+        if (!activeDescendantRecord) {
+          window.speechSynthesis.cancel();
+          return;
+        }
+        const activeDescendant = activeDescendantRecord.target;
+        if (!activeDescendant.getAttribute('aria-label')) return;
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+        }
+        let ssu = new SpeechSynthesisUtterance(activeDescendant.getAttribute('aria-label'));
+        window.speechSynthesis.speak(ssu);
+      });
+
+      const speechConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => speechObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+
+      document.getElementById('speechSynth').addEventListener('click',  () => {
+        if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+        if (document.getElementById('speechSynth').checked) {
+        speechConnect(); 
+        return;
+        } 
+        speechObserver.disconnect(); 
+        })
+
+      const subtitle = document.createElement('div');
+      subtitle.setAttribute('aria-hidden', 'true');
+      subtitle.setAttribute('style', 'position: fixed; bottom:0; left: 0; background-color: black; color: white; max-width: 100%');      
+      document.body.appendChild(subtitle);
+
+      subtitleObserver = new MutationObserver(function(mutationRecordArray) {
+        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
+        if (!activeDescendantRecord) {
+          subtitle.innerHTML  = '';
+          return;
+        }
+        const activeDescendant = activeDescendantRecord.target;
+        if (!activeDescendant.getAttribute('aria-label') || activeDescendant !== document.activeElement) {
+          subtitle.innerHTML  = '';
+          return;
+        }
+        subtitle.innerHTML  = activeDescendant.getAttribute('aria-label');
+      });
+
+      const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+
+      document.getElementById('subtitle').addEventListener('click',  () => {
+        document.getElementById('subtitle').checked ? subtitleConnect() : subtitleObserver.disconnect();
+      })
+    </script>
   </body>
 </html>
 
