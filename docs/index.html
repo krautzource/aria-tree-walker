@@ -1498,7 +1498,7 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
     <script>
       const speechObserver = new MutationObserver(function(mutationRecordArray) {
         const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord) {
+        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
           window.speechSynthesis.cancel();
           return;
         }
@@ -1529,7 +1529,7 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
 
       subtitleObserver = new MutationObserver(function(mutationRecordArray) {
         const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord) {
+        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
           subtitle.innerHTML  = '';
           return;
         }
