@@ -70,7 +70,7 @@ const main = (texstring) => {
     <script>
       const speechObserver = new MutationObserver(function(mutationRecordArray) {
         const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord) {
+        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
           window.speechSynthesis.cancel();
           return;
         }
@@ -101,7 +101,7 @@ const main = (texstring) => {
 
       subtitleObserver = new MutationObserver(function(mutationRecordArray) {
         const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord) {
+        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
           subtitle.innerHTML  = '';
           return;
         }
@@ -111,6 +111,12 @@ const main = (texstring) => {
           return;
         }
         subtitle.innerHTML  = activeDescendant.getAttribute('aria-label');
+        // const activeTree = activeDescendant.closest('[data-treewalker]');
+        // const rect = activeTree.getBoundingClientRect();
+        // subtitle.style.bottom = (window.innerHeight - rect.bottom - subtitle.scrollHeight)+'px';
+        // subtitle.style.left = rect.left+'px';
+        // subtitle.style.width = rect.width+'px';
+        // console.log(rect)
       });
 
       const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
