@@ -55,6 +55,8 @@ const main = (texstring) => {
       .replace('role="tree"', 'role="tree" data-treewalker')
       .replace('focusable="false"', '')
       .replace(/data-semantic-(.*?)="(.*?)" /g, '')}
+    <h2>Musical score</h2>
+    <p>This technique can also be applied to other structured content such as musical scores, see this <a href="./music/">simple example score</a>.</p>
     <h2>An equation in CSS</h2>
     <p>This approach is independent of the markup; here is the same equation laid out using HTML with CSS.</p>
     <style>${out.css}</style>
