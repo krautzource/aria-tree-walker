@@ -54,6 +54,10 @@ test('focus and arrow down', pageMacro, async (t, page) => {
     return document.activeElement.getAttribute('data-owns-id');
   });
   t.is(activedescendantId, 'treeitem1');
+  const treeActivedescendantProp = await page.evaluate(() => {
+    return document.activeElement.closest('[role="tree"]').getAttribute('data-activeDescendant');
+  });
+  t.is(treeActivedescendantProp, activedescendantId);
 });
 
 test('links: check tabindex', pageMacro, async (t, page) => {
