@@ -67,16 +67,17 @@ const main = (texstring) => {
 
     <h2>A tikz diagram</h2>
     <p>It is also possible to leverage tikz for this purpose, combining special macros with dvisvgm. The following is a simple tree diagram; you can find the TeX source in the repository's docs folder.</p>
-    ${fs.readFileSync(__dirname + '/../tikz/tree.svg').toString().replace('<![CDATA[','').replace(']]>','').replace('<?xml version=\'1.0\' encoding=\'UTF-8\'?>','').replace('<svg', '<svg data-treewalker="" id="tikz"' )}
+    ${fs.readFileSync(__dirname + '/../tikz/tree.svg').toString().replace('<![CDATA[', '').replace(']]>', '').replace('<?xml version=\'1.0\' encoding=\'UTF-8\'?>', '').replace('<svg', '<svg data-treewalker="" id="tikz"')}
     <script type="module" src="example.js"></script>
     <script>
-      const speechObserver = new MutationObserver(function(mutationRecordArray) {
-        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
+        const speechObserver = new MutationObserver(function(mutationRecordArray) {
+        if (mutationRecordArray.length < 1) return;
+        const activeTree = mutationRecordArray[0].target;
+        const activeDescendant = activeTree.querySelector('[data-owns-id="'+activeTree.getAttribute('data-activedescendant')+'"]') || activeTree;
+        if (!activeDescendant || activeDescendant !== document.activeElement) {
           window.speechSynthesis.cancel();
           return;
         }
-        const activeDescendant = activeDescendantRecord.target;
         if (!activeDescendant.getAttribute('aria-label')) return;
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
@@ -84,8 +85,7 @@ const main = (texstring) => {
         let ssu = new SpeechSynthesisUtterance(activeDescendant.getAttribute('aria-label'));
         window.speechSynthesis.speak(ssu);
       });
-
-      const speechConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => speechObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+      const speechConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => speechObserver.observe(node, {subtree: false, attributeFilter: ['data-activedescendant']}));
 
       document.getElementById('speechSynth').addEventListener('click',  () => {
         if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
@@ -102,13 +102,10 @@ const main = (texstring) => {
       document.body.appendChild(subtitle);
 
       subtitleObserver = new MutationObserver(function(mutationRecordArray) {
-        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
-          subtitle.innerHTML  = '';
-          return;
-        }
-        const activeDescendant = activeDescendantRecord.target;
-        if (!activeDescendant.getAttribute('aria-label') || activeDescendant !== document.activeElement) {
+        if (mutationRecordArray.length < 1) return;
+        const activeTree = mutationRecordArray[0].target;
+        const activeDescendant = activeTree.querySelector('[data-owns-id="'+activeTree.getAttribute('data-activedescendant')+'"]') || activeTree;
+        if (!activeDescendant || activeDescendant !== document.activeElement || !activeDescendant.getAttribute('aria-label')) {
           subtitle.innerHTML  = '';
           return;
         }
@@ -121,10 +118,14 @@ const main = (texstring) => {
         // console.log(rect)
       });
 
-      const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+      const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: false, attributeFilter: ['data-activedescendant']}));
 
       document.getElementById('subtitle').addEventListener('click',  () => {
         document.getElementById('subtitle').checked ? subtitleConnect() : subtitleObserver.disconnect();
+      })
+
+      document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState  !== 'visible') window.speechSynthesis.cancel();
       })
     </script>
   </body>
