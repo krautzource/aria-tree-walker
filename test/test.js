@@ -55,9 +55,14 @@ test('focus and arrow down', pageMacro, async (t, page) => {
   });
   t.is(activedescendantId, 'treeitem1');
   const treeActivedescendantProp = await page.evaluate(() => {
-    return document.activeElement.closest('[role="tree"]').getAttribute('data-activeDescendant');
+    return document.activeElement.closest('[role="tree"]').getAttribute('data-activedescendant');
   });
   t.is(treeActivedescendantProp, activedescendantId);
+  await page.keyboard.press('Tab');
+  const treeActivedescendantPropAfterFocusOut = await page.evaluate(() => {
+    return document.querySelector('[aria-label="test tree 1"]').getAttribute('data-activedescendant');
+  });
+  t.is(treeActivedescendantPropAfterFocusOut, '');
 });
 
 test('links: check tabindex', pageMacro, async (t, page) => {
