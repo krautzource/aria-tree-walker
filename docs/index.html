@@ -1498,13 +1498,14 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
 
     <script type="module" src="example.js"></script>
     <script>
-      const speechObserver = new MutationObserver(function(mutationRecordArray) {
-        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
+        const speechObserver = new MutationObserver(function(mutationRecordArray) {
+        if (mutationRecordArray.length < 1) return;
+        const activeTree = mutationRecordArray[0].target;
+        const activeDescendant = activeTree.querySelector('[data-owns-id="'+activeTree.getAttribute('data-activedescendant')+'"]') || activeTree;
+        if (!activeDescendant || activeDescendant !== document.activeElement) {
           window.speechSynthesis.cancel();
           return;
         }
-        const activeDescendant = activeDescendantRecord.target;
         if (!activeDescendant.getAttribute('aria-label')) return;
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
@@ -1512,8 +1513,7 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
         let ssu = new SpeechSynthesisUtterance(activeDescendant.getAttribute('aria-label'));
         window.speechSynthesis.speak(ssu);
       });
-
-      const speechConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => speechObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+      const speechConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => speechObserver.observe(node, {subtree: false, attributeFilter: ['data-activedescendant']}));
 
       document.getElementById('speechSynth').addEventListener('click',  () => {
         if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
@@ -1530,13 +1530,10 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
       document.body.appendChild(subtitle);
 
       subtitleObserver = new MutationObserver(function(mutationRecordArray) {
-        const activeDescendantRecord = mutationRecordArray.find(record => record.target.getAttribute('tabindex') === '0');
-        if (!activeDescendantRecord || activeDescendantRecord.target !== document.activeElement) {
-          subtitle.innerHTML  = '';
-          return;
-        }
-        const activeDescendant = activeDescendantRecord.target;
-        if (!activeDescendant.getAttribute('aria-label') || activeDescendant !== document.activeElement) {
+        if (mutationRecordArray.length < 1) return;
+        const activeTree = mutationRecordArray[0].target;
+        const activeDescendant = activeTree.querySelector('[data-owns-id="'+activeTree.getAttribute('data-activedescendant')+'"]') || activeTree;
+        if (!activeDescendant || activeDescendant !== document.activeElement || !activeDescendant.getAttribute('aria-label')) {
           subtitle.innerHTML  = '';
           return;
         }
@@ -1549,10 +1546,14 @@ text.f0 {font-family:cmr10;font-size:9.96264px}
         // console.log(rect)
       });
 
-      const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: true, attributeFilter: ['tabindex']}));
+      const subtitleConnect = () => document.querySelectorAll('[data-treewalker]').forEach(node => subtitleObserver.observe(node, {subtree: false, attributeFilter: ['data-activedescendant']}));
 
       document.getElementById('subtitle').addEventListener('click',  () => {
         document.getElementById('subtitle').checked ? subtitleConnect() : subtitleObserver.disconnect();
+      })
+
+      document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState  !== 'visible') window.speechSynthesis.cancel();
       })
     </script>
   </body>
