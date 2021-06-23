@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/krautzource/aria-tree-walker/compare/v3.2.1...v3.3.0) (2021-06-23)
+
+
+### Features
+
+* **abstractTree:** support non-anchor links ([24a6321](https://github.com/krautzource/aria-tree-walker/commit/24a6321d18edadc32a295c3782837f999f0559ff)), closes [#665](https://github.com/krautzource/aria-tree-walker/issues/665)
+
 ### [3.2.1](https://github.com/krautzource/aria-tree-walker/compare/v3.2.0...v3.2.1) (2021-06-22)
 
 
