@@ -107,6 +107,19 @@ test('links: activating with SPACE', pageMacro, async (t, page) => {
   t.is(location, 'https://example.com/');
 });
 
+test('links: faux-link', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Space');
+  await page.waitForNavigation({ waitUntil: 'load' });
+  const location = await page.evaluate(() => document.location.toString());
+  t.is(location, 'https://example.com/');
+});
+
 test('highlighting: tree', pageMacro, async (t, page) => {
   await page.goto('localhost:8080/test/');
   await page.keyboard.press('Tab');
