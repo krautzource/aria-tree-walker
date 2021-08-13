@@ -141,3 +141,23 @@ test('highlighting: subtreeitem not descendant', pageMacro, async (t, page) => {
   const classname = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem3"]').className);
   t.is(classname, 'is-highlight');
 });
+
+test('abort (remove) navigator', pageMacro, async (t, page) => {
+  await page.goto('localhost:8080/test/abortSignal.html');
+  await page.keyboard.press('Tab');
+  // navigate
+  await page.keyboard.press('ArrowDown');
+  const treeActivedescendantProp = await page.evaluate(() => {
+    return document.activeElement.closest('[role="tree"]').getAttribute('data-activedescendant');
+  });
+  t.is(treeActivedescendantProp, 'treeitem1');
+  // abort navigator
+  await page.evaluate(() => window.controller.abort());
+  // attempt navigation
+  await page.keyboard.press('ArrowUp');
+  // note failure to navigate
+  const treeActivedescendantProp2 = await page.evaluate(() => {
+    return document.querySelector('[role="tree"]').getAttribute('data-activedescendant');
+  });
+  t.is(treeActivedescendantProp2, treeActivedescendantProp);
+});
