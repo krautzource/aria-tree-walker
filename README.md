@@ -15,19 +15,19 @@ const myNode = document.querySelector('...');
 attachNavigator(myNode);
 ```
 
-The navigator extracts an abtract tree based on suitably prepared data-owns and data-owns-id attributes. The abstract tree is used to provide keyboard navigation and (accessible) focus management (using the "roving tabindex" technique).
+The navigator extracts an abtract tree based on suitably prepared `data-owns` and `data-owns-id` attributes. The abstract tree is used to provide keyboard navigation and (accessible) focus management (using the "roving tabindex" technique).
 
-The active tree node will get a class of `is-activedescendant` for (visual) styling purposes.
+The active tree node will get a class of `is-activedescendant` for (visual) styling purposes while nodes in its subtree will get a class of `is-highlight`.
 
 ## Content expectations
 
 Some rough expectations to get meaningful results from your content:
 
-- The DOM node **must** either have a data-owns attribute or have a descendant with a data-owns attribute (which will serve as de-facto root - having a wrapping node around the "real" root can make things easier for authoring/design).
-- The data-owns attribute contains a space-separated list of identifiers, matching data-owns-id attribute values on descendant nodes.
-- The "data-owns tree" **should** be "full" since navigation stops at elements without data-owns attribute.
-- Each node with data-owns attribute **should** have suitable roles and ARIA markup, e.g., `role="tree"` and `role="treeitem"` as well as an `aria-label` with a suitable accessible name (to get a "flat" name).
-- Visual highlighting is handled by author CSS using `.is-activedescendant`.
+- The DOM node **must** either have a `data-owns` attribute or have a descendant with a `data-owns` attribute (which will serve as de-facto root - having a wrapping node around the "real" root can make things easier for authoring/design).
+- The `data-owns` attribute contains a space-separated list of identifiers, matching `data-owns-id` attribute values on descendant nodes.
+- The "`data-owns` tree" **should** be "full" since navigation stops at elements without `data-owns` attribute.
+- Each node with `data-owns` attribute **should** have suitable roles and ARIA markup, e.g., `role="tree"` and `role="treeitem"` as well as an `aria-label` with a suitable accessible name (to get a "flat" name).
+- Visual highlighting is handled by author-provided CSS using `.is-activedescendant`, `.is-highlight`.
 
 ## User Experience
 
