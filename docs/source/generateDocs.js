@@ -102,7 +102,7 @@ const main = (texstring) => {
       subtitle.setAttribute('style', 'position: fixed; bottom:0; left: 0; background-color: black; color: white; max-width: 100%');      
       document.body.appendChild(subtitle);
 
-      subtitleObserver = new MutationObserver(function(mutationRecordArray) {
+      const subtitleObserver = new MutationObserver(function(mutationRecordArray) {
         if (mutationRecordArray.length < 1) return;
         const activeTree = mutationRecordArray[0].target;
         const activeDescendant = activeTree.querySelector('[data-owns-id="'+activeTree.getAttribute('data-activedescendant')+'"]') || activeTree;
