@@ -127,11 +127,18 @@ test('highlighting: tree', pageMacro, async (t, page) => {
   t.is(classnameTree, 'is-highlight is-activedescendant');
   let classnameTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').className);
   t.is(classnameTreeitem, 'is-highlight');
+  let ariahiddenTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').getAttribute('aria-hidden'));
+  t.is(ariahiddenTreeitem, 'true');
   await page.keyboard.press('ArrowDown');
   classnameTree = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"]').className);
   classnameTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').className)
   t.is(classnameTree, '');
   t.is(classnameTreeitem, 'is-highlight is-activedescendant');
+  ariahiddenTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').hasAttribute('aria-hidden'));
+  t.is(ariahiddenTreeitem, false);
+  await page.keyboard.press('ArrowUp');
+  ariahiddenTreeitem = await page.evaluate(() => document.querySelector('[aria-label="test tree 1"] [data-owns-id="treeitem1"]').getAttribute('aria-hidden'));
+  t.is(ariahiddenTreeitem, 'true');
 });
 
 test('highlighting: subtreeitem not descendant', pageMacro, async (t, page) => {
