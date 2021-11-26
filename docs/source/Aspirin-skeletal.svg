@@ -1,6 +1,6 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="336"
 	height="279" viewBox="-0.5 -0.311 336 279" enable-background="new -0.5 -0.311 336 279" xml:space="preserve"
-	tabindex="0" role="tree" aria-level="1" data-owns-id="aspirin-0" aria-label="Aspirin"
+	tabindex="0" role="tree" data-owns-id="aspirin-0" aria-label="Aspirin"
 	data-owns="aspirin-1 aspirin-8 aspirin-12 aspirin-13" class="" data-treewalker="">
 	<g aria="hidden" role="presentation">
 		<defs role="presentation">
@@ -12,9 +12,9 @@
 		</clipPath>
 	</g>
 	<g data-owns-id="aspirin-1" aria-label="Benzene ring Substitutions at positions 1 and 2." role="treeitem"
-		aria-level="2" data-owns="aspirin-2 aspirin-3 aspirin-4 aspirin-5 aspirin-6 aspirin-7">
+		aria-level="1" data-owns="aspirin-2 aspirin-3 aspirin-4 aspirin-5 aspirin-6 aspirin-7">
 
-		<g data-owns-id="aspirin-2" aria-label="Double bond to Carbon 1 and Carbon 2." role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-2" aria-label="Double bond to Carbon 1 and Carbon 2." role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="82.92" y1="131.489" x2="145.56" y2="167.489" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,133.049 82.68,131.37 84.24,130.41 145.68,165.93 145.68,167.729
@@ -25,13 +25,13 @@
 				points="81.96,142.77 83.4,140.13 137.76,171.449 136.2,174.09 81.96,142.77 " role="presentation">
 			</polyline>
 		</g>
-		<g data-owns-id="aspirin-3" aria-label="Single bond to Carbon 2 and Carbon 3." role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-3" aria-label="Single bond to Carbon 2 and Carbon 3." role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="145.68" y1="167.85" x2="145.68" y2="240.21" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,168.569 145.68,167.729 147.24,168.569 147.24,241.289
 	144.12,239.609 144.12,168.569 " role="presentation"></polyline>
 		</g>
-		<g data-owns-id="aspirin-4" aria-label="Double bond to Carbon 3 and Carbon 4." role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-4" aria-label="Double bond to Carbon 3 and Carbon 4." role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="145.56" y1="240.569" x2="82.92" y2="276.689" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="144.12,239.609 147.24,241.289 82.68,278.609 82.68,275.01
@@ -42,13 +42,13 @@
 				points="136.2,234.09 137.76,236.729 83.4,268.05 81.96,265.409 136.2,234.09 " role="presentation">
 			</polyline>
 		</g>
-		<g data-owns-id="aspirin-5" aria-label="Single bond to Carbon 4 and Carbon 5." role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-5" aria-label="Single bond to Carbon 4 and Carbon 5." role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="82.56" y1="276.689" x2="19.92" y2="240.569" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="82.68,275.01 82.68,278.609 18.24,241.289 21.24,239.609 82.68,275.01
 	" role="presentation"></polyline>
 		</g>
-		<g data-owns-id="aspirin-6" aria-label="Single bond to Carbon 5 and Carbon 1" role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-6" aria-label="Single bond to Carbon 5 and Carbon 1" role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="19.68" y1="240.21" x2="19.68" y2="167.85" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,239.609 18.24,241.289 18.24,166.89 21.24,168.569 21.24,239.609
@@ -60,23 +60,23 @@
 		</g>
 		<g data-owns-id="aspirin-7"
 			aria-label="Carbon 3 bonded to 1 hydrogen. single bonded to Carbon 4. double bonded to Carbon 2."
-			role="treeitem" aria-level="3">
+			role="treeitem" aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="19.92" y1="167.489" x2="82.56" y2="131.489" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="21.24,168.569 18.24,166.89 81.12,130.41 82.68,131.37 82.68,133.049
 	21.24,168.569 " role="presentation"></polyline>
 		</g>
 	</g>
-	<g data-owns-id="aspirin-8" aria-label="Functional group Carboxylic acid." role="treeitem" aria-level="2"
+	<g data-owns-id="aspirin-8" aria-label="Functional group Carboxylic acid." role="treeitem" aria-level="1"
 		data-owns="aspirin-9 aspirin-10 aspirin-11">
 		<g data-owns-id="aspirin-9" aria-label="Single bond from Carbon 1 to Benzene ring." role="treeitem"
-			aria-level="3">
+			aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="82.68" y1="58.77" x2="82.68" y2="131.129" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="81.12,57.81 84.24,59.489 84.24,130.41 82.68,131.37 81.12,130.41
 	81.12,57.81 " role="presentation"></polyline>
 		</g>
-		<g data-owns-id="aspirin-10" aria-label="Oxygen 1. double bonded to Carbon 1." role="treeitem" aria-level="3">
+		<g data-owns-id="aspirin-10" aria-label="Oxygen 1. double bonded to Carbon 1." role="treeitem" aria-level="2">
 			<text transform="matrix(1 0 0 1 2.1602 38.6094)" font-family="'Arial'" font-size="45"
 				role="presentation">O</text>
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
@@ -89,7 +89,7 @@
 				points="36.72,28.77 38.28,26.129 87.84,54.81 86.28,57.449 36.72,28.77 " role="presentation"></polyline>
 		</g>
 		<g data-owns-id="aspirin-11" aria-label="Oxygen 2 bonded to 1 hydrogen. single bonded to Carbon 1."
-			role="treeitem" aria-level="3">
+			role="treeitem" aria-level="2">
 			<text transform="matrix(1 0 0 1 128.04 38.6094)" font-family="'Arial'" font-size="45"
 				role="presentation">OH</text>
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
@@ -100,18 +100,18 @@
 		</g>
 	</g>
 	<g data-owns-id="aspirin-12" aria-label="Single bond from Oxygen 1 in Ester to Carbon 2 in Benzene ring."
-		role="treeitem" aria-level="2">
+		role="treeitem" aria-level="1">
 		<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 			stroke-miterlimit="10" x1="192.6" y1="140.729" x2="145.92" y2="167.489" role="presentation"></line>
 		<polyline fill-rule="evenodd" clip-rule="evenodd" points="192.12,139.169 193.56,141.81 147.24,168.569 145.68,167.729
 	145.68,165.93 192.12,139.169 " role="presentation"></polyline>
 	</g>
-	<g data-owns-id="aspirin-13" aria-label="Functional group Ester." role="treeitem" aria-level="2"
+	<g data-owns-id="aspirin-13" aria-label="Functional group Ester." role="treeitem" aria-level="1"
 		data-owns="aspirin-14 aspirin-15 aspirin-16 aspirin-17">
 		<text transform="matrix(1 0 0 1 191.04 147.6895)" font-family="'Arial'" font-size="45" data-owns-id="aspirin-14"
-			aria-label="Oxygen 1." role="treeitem" aria-level="3">O</text>
+			aria-label="Oxygen 1." role="treeitem" aria-level="2">O</text>
 		<g data-owns-id="aspirin-15" aria-label="Single bond, from to Oxygen 1 to Carbon 1." role="treeitem"
-			aria-level="3">
+			aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="271.44" y1="167.489" x2="224.4" y2="140.489" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd"
@@ -119,18 +119,18 @@
 			</polyline>
 		</g>
 		<g data-owns-id="aspirin-16" aria-label="Single bond, from Carbon 1 to Carbon 2." role="treeitem"
-			aria-level="3">
+			aria-level="2">
 			<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 				stroke-miterlimit="10" x1="334.44" y1="131.489" x2="271.8" y2="167.489" role="presentation"></line>
 			<polyline fill-rule="evenodd" clip-rule="evenodd" points="333.84,130.049 334.56,131.37 335.28,132.689 271.56,169.409
 	271.56,165.93 333.84,130.049 " role="presentation"></polyline>
 		</g>
-		<g data-owns-id="aspirin-17" aria-label="Oxygen 2. double bonded to Carbon 1." role="treeitem" aria-level="3"
+		<g data-owns-id="aspirin-17" aria-label="Oxygen 2. double bonded to Carbon 1." role="treeitem" aria-level="2"
 			data-owns="aspirin-18 aspirin-19">
 			<text transform="matrix(1 0 0 1 254.04 256.7695)" font-family="'Arial'" font-size="45"
-				data-owns-id="aspirin-18" aria-label="Oxygen 2." role="treeitem" aria-level="4">O</text>
+				data-owns-id="aspirin-18" aria-label="Oxygen 2." role="treeitem" aria-level="3">O</text>
 			<g data-owns-id="aspirin-19" aria-label="Double bond from Oxygen 2 to Carbon 1." role="treeitem"
-				aria-level="4">
+				aria-level="3">
 				<line fill="currentColor" stroke="currentColor" stroke-width="0.12" stroke-linecap="square"
 					stroke-miterlimit="10" x1="276" y1="221.729" x2="276" y2="165.329" role="presentation"></line>
 				<polyline fill-rule="evenodd" clip-rule="evenodd" points="277.44,221.97 274.44,221.97 274.44,165.209 277.44,165.209
