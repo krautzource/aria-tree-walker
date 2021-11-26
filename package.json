@@ -5,6 +5,9 @@
   "main": "dist/aria-tree-walker.cjs.js",
   "module": "dist/aria-tree-walker.esm.js",
   "types": "dist/aria-tree-walker.d.ts",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "pretest": "npx rollup -c rollup.config.js",
     "declarations": "npx tsc --declaration --emitDeclarationOnly --allowJs lib/navigator.js && cp lib/navigator.d.ts dist/aria-treewalker.d.ts",
