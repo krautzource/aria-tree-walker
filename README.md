@@ -44,3 +44,11 @@ See `./docs` for examples using simple diagrams, chemical diagrams, and (server-
 An initial prototype was developed during the AIM workshop [Web accessibility of mathematics](https://aimath.org/pastworkshops/webmath.html). Much of the code was (and still is) based on prior work in [MathJax](https://github.com/mathjax/MathJax), [speech rule engine](https://github.com/zorkow/speech-rule-engine/issues), and [ChromeVox](http://www.chromevox.com/) (part of [Chromium](https://www.chromium.org/)). That prototype was further developed into [MathJax SRE Walker](https://github.com/krautzource/mathjax-sre-walker), a lightweight walker for server-side generated mathjax rendering.
 
 From there, the walker evolved from SRE-specific markup to a general purpose aria(-owns) tree walker. At that point, it was forked to this repository and continued as aria-tree-walker. The goal is to support any such tree (e.g., complex diagrammatic content) and to gradually improve the user experience.
+
+## Thanks
+
+Besides the [contributors](./AUTHORS.txt), the following organizations have helped in the development of this library:
+
+[![American Institute of Mathematics](https://aimath.org/~kaur/images/AIMlogoT.jpg)](https://aimath.org/)
+[![American Mathematical Society](https://www.ams.org/images/content/logo.png)](https://www.ams.org)
+
