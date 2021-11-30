@@ -49,7 +49,7 @@ From there, the walker evolved from SRE-specific markup to a general purpose ari
 
 Besides the [contributors](./AUTHORS.txt), the following organizations have helped in the development of this library:
 
-[![American Institute of Mathematics](http://reuf.aimath.org/assets/img/aimlogo.gif)](https://aimath.org/)
+[![American Institute of Mathematics](https://aimath.org/wp-content/uploads/cropped-mh85-logo1.jpg)](https://aimath.org/)
 
 [![American Mathematical Society](https://www.ams.org/images/content/logo.png)](https://www.ams.org)
 
