@@ -19,7 +19,7 @@ const liteAdaptor = require('mathjax-full/js/adaptors/liteAdaptor.js')
   .liteAdaptor;
 const STATE = require('mathjax-full/js/core/MathItem.js').STATE;
 const AllPackages = require('mathjax-full/js/input/tex/AllPackages.js')
-  .AllPackages.filter( x => x!=='bussproofs'); // NOTE bussproofs needs getBBox() method
+  .AllPackages.filter(x => x !== 'bussproofs'); // NOTE bussproofs needs getBBox() method
 const tex = new TeX({ packages: AllPackages, tagSide: 'left', });
 const html = new HTMLDocument('', liteAdaptor(), { InputJax: tex });
 const MmlVisitor = require('mathjax-full/js/core/MmlTree/SerializedMmlVisitor.js')
@@ -56,10 +56,37 @@ const chtml = new CHTML({
 const svghtml = mathjax.document('', { InputJax: mml, OutputJax: svg });
 const chtmlhtml = mathjax.document('', { InputJax: mml, OutputJax: chtml });
 
+  // crossing the streams... cf. zorkow/speech-rule-engine#438
+const crossingStreams = (brailleDoc, node) => {
+  node.setAttribute(
+    'data-semantic-braille',
+    brailleDoc
+      .querySelector(
+        '[data-semantic-id="' + node.getAttribute('data-semantic-id') + '"]'
+      )
+      .getAttribute('data-semantic-speech')
+  );
+}
+
 module.exports = (input) => {
   const mml = tex2mml(input, true);
   const enriched = sre.toEnriched(mml);
   const mmlpretty = enriched.toString();
+
+  // switch SRE to Braille
+  sre.setupEngine({
+    domain: 'default',
+    style: 'default',
+    locale: 'nemeth',
+    modality: 'braille',
+    speech: 'deep',
+    structure: true,
+    mode: 'sync',
+  });
+  sre.engineReady();
+  const enrichedMmlBraille = sre.toEnriched(mml).toString();
+  const dom = new JSDOM(`<!DOCTYPE html>${enrichedMmlBraille}`);
+  const brailleDoc = dom.window.document;
 
   const svgnode = svghtml.convert(mmlpretty, {
     display: true,
@@ -68,6 +95,7 @@ module.exports = (input) => {
     containerWidth: 80 * 16
   });
 
+  svgnode.querySelectorAll('[data-semantic-speech]').forEach(crossingStreams.bind(null, brailleDoc));
   rewrite(svgnode.firstElementChild);
 
   const chtmlnode = chtmlhtml.convert(mmlpretty, {
@@ -77,6 +105,7 @@ module.exports = (input) => {
     containerWidth: 80 * 16
   });
 
+  chtmlnode.querySelectorAll('[data-semantic-speech]').forEach(crossingStreams.bind(null, brailleDoc));
   rewrite(chtmlnode);
 
   return {
