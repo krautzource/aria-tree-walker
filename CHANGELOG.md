@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/krautzource/aria-tree-walker/compare/v3.3.0...v3.4.0) (2022-01-14)
+
+
+### Features
+
+* dynamically add aria-hidden ([4e5ca41](https://github.com/krautzource/aria-tree-walker/commit/4e5ca41ffcd08f9dfb21e5b1dc8f02eabf987f5a)), closes [#49](https://github.com/krautzource/aria-tree-walker/issues/49)
+* **navigator.js:** support optional abortSignal ([af3769c](https://github.com/krautzource/aria-tree-walker/commit/af3769c5c2390de6bdc708ddc70ab64e3391338b)), closes [#41](https://github.com/krautzource/aria-tree-walker/issues/41)
+
+
+### Bug Fixes
+
+* **package:** add files property ([547189d](https://github.com/krautzource/aria-tree-walker/commit/547189d05ba184dc18dcf2265f72b3db17409442)), closes [#47](https://github.com/krautzource/aria-tree-walker/issues/47)
+
 ## [3.3.0](https://github.com/krautzource/aria-tree-walker/compare/v3.2.1...v3.3.0) (2021-06-23)
 
 
