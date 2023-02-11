@@ -41,7 +41,7 @@
   "homepage": "https://github.com/krautzource/aria-tree-walker#readme",
   "devDependencies": {
     "@krautzource/sre-to-tree": "^2.0.2",
-    "ava": "^3.15.0",
+    "ava": "^5.2.0",
     "jsdom": "^18.0.1",
     "mathjax-full": "^3.2.0",
     "playwright": "^1.16.3",
