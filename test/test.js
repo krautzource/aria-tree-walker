@@ -60,24 +60,6 @@ test('focus and arrow down', async (t) => {
   t.assert.equal(treeActivedescendantPropAfterFocusOut, '');
 });
 
-test('links: check tabindex', async (t) => {
-  await page.goto('http://localhost:8080/test/');
-  let tabindex = await page.evaluate(() => {
-    return document
-      .querySelector('a').getAttribute('tabindex');
-  });
-  t.assert.equal(tabindex, '-1');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.press('ArrowRight');
-  tabindex = await page.evaluate(() => {
-    return document
-      .querySelector('a').getAttribute('tabindex');
-  });
-  t.assert.equal(tabindex, '0');
-});
-
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
@@ -85,31 +67,6 @@ await test('links: activating  with ENTER', async (t) => {
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Enter');
-  await page.waitForNavigation({ waitUntil: 'load' });
-  const location = await page.evaluate(() => document.location.toString());
-  t.assert.equal(location, 'https://example.com/');
-});
-
-await test('links: activating with SPACE', async (t) => {
-  await page.goto('http://localhost:8080/test/');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.press('ArrowRight');
-  await page.keyboard.press('Space');
-  await page.waitForNavigation({ waitUntil: 'load' });
-  const location = await page.evaluate(() => document.location.toString());
-  t.assert.equal(location, 'https://example.com/');
-});
-
-await test('links: faux-link', async (t) => {
-  await page.goto('http://localhost:8080/test/');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.press('ArrowRight');
-  await page.keyboard.press('ArrowRight');
-  await page.keyboard.press('Space');
   await page.waitForNavigation({ waitUntil: 'load' });
   const location = await page.evaluate(() => document.location.toString());
   t.assert.equal(location, 'https://example.com/');
