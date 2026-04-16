@@ -16,6 +16,6 @@ jobs:
       - name: Disable AppArmor (for puppeteer)
         run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Run tests
         run: npm test
