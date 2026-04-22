@@ -3,8 +3,8 @@
   "type": "module",
   "version": "3.4.0",
   "description": "A lightweight walker for labeled aria(-owns) trees",
-  "main": "dist/aria-tree-walker.cjs.js",
-  "module": "dist/aria-tree-walker.esm.js",
+  "main": "dist/aria-tree-walker.js",
+  "module": "dist/aria-tree-walker.js",
   "types": "dist/aria-tree-walker.d.ts",
   "files": [
     "dist/*"
@@ -15,7 +15,7 @@
     "test": "node --test ./test/test.js",
     "build": "npx rollup -c rollup.config.js",
     "postbuild": "npm run declarations",
-    "predocs": "npm run build && cp ./dist/aria-tree-walker.esm.js ./docs/treewalker.js",
+    "predocs": "npm run build && cp ./dist/aria-tree-walker.js ./docs/treewalker.js",
     "docs": "node docs/source/generateDocs.js",
     "release": "standard-version"
   },
@@ -46,8 +46,8 @@
     "mathjax-full": "^3.2.0",
     "polka": "0.5.2",
     "puppeteer": "24.40.0",
-    "rollup": "^2.59.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "rollup": "4.60.2",
+    "@rollup/plugin-terser": "1.0.0",
     "sirv": "3.0.2",
     "speech-rule-engine": "^4.0.0-beta.2",
     "standard-version": "^9.3.2",
