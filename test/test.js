@@ -41,14 +41,20 @@ test('catch errors', async (t) => {
   t.assert.ok(true);
 });
 
-test('focus and arrow down', async (t) => {
+test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
-  const activedescendantId = await page.evaluate(() => {
+  let activedescendantId = await page.evaluate(() => {
     return document.activeElement.getAttribute('data-owns-id');
   });
   t.assert.equal(activedescendantId, 'treeitem1');
+
+  await page.keyboard.press('ArrowUp');
+  activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'root');
 });
 
 await test('links: activating  with ENTER', async (t) => {
