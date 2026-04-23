@@ -74,6 +74,26 @@ test('In tree, navigating with ArrowRight and ArrowLeft', async (t) => {
   t.assert.equal(activedescendantId, 'treeitem1');
 });
 
+// tab navigation
+
+test('In tree, navigating with Tab and Shift+Tab', async (t) => {
+  await page.goto('http://localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Tab');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem2');
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('Tab');
+  await page.keyboard.up('Shift');
+  activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem1');
+});
+
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
@@ -114,6 +134,7 @@ await test('highlighting: subtreeitem not descendant', async (t) => {
   const classname = await page.evaluate(() => document.querySelector('[data-owns-id="root"] [data-owns-id="treeitem3"]').className);
   t.assert.equal(classname, 'is-highlight');
 });
+
 
 await test('abort (remove) navigator', async (t) => {
   await page.goto('http://localhost:8080/test/abortSignal.html');
