@@ -57,6 +57,24 @@ test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
   t.assert.equal(activedescendantId, 'root');
 });
 
+
+test('In tree, navigating with ArrowDown on leaf', async (t) => {
+  await page.goto('http://localhost:8080/test/');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown'); // item 1.1
+  await page.keyboard.press('ArrowDown'); // item 1.1.1
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem3'); //item 1.1.1
+
+  await page.keyboard.press('ArrowDown');
+  activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem3'); // item 1.1.1
+});
+
 test('In tree, navigating with ArrowRight and ArrowLeft', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
@@ -93,6 +111,14 @@ test('In tree, navigating with Tab and Shift+Tab', async (t) => {
   });
   t.assert.equal(activedescendantId, 'treeitem1');
 });
+
+// mix of tab and arrow navigation
+
+// "Cousin" navigation
+
+// TODO: click exploration
+
+// TODO: deep links
 
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
