@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "pretest": "npx rollup -c rollup.config.js",
-    "declarations": "npx tsc --declaration --emitDeclarationOnly --allowJs lib/navigator.js && cp lib/navigator.d.ts dist/aria-treewalker.d.ts",
+    "declarations": "npx tsc --declaration --emitDeclarationOnly --allowJs lib/navigator.js && npx tsc --declaration --emitDeclarationOnly --allowJs lib/abstractTree.js && cp lib/navigator.d.ts dist/aria-tree-walker.d.ts",
     "test": "node --test ./test/test.js",
     "build": "npx rollup -c rollup.config.js",
     "postbuild": "npm run declarations",
@@ -51,6 +51,6 @@
     "sirv": "3.0.2",
     "speech-rule-engine": "^4.0.0-beta.2",
     "commit-and-tag-version": "12.7.1",
-    "typescript": "^4.4.4"
+    "typescript": "5.9.3"
   }
 }
