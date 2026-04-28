@@ -192,15 +192,15 @@ await test('links: activating  with ENTER', async (t) => {
 await test('highlighting: tree', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
-  let classnameTree = await page.evaluate(() => document.querySelector('[data-label="test tree 1"]').className);
+  let classnameTree = await page.evaluate(() => document.querySelector('[data-label="test tree 1"]').getAttribute('class'));
   t.assert.equal(classnameTree, 'is-highlight is-activedescendant');
-  let classnameTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').className);
+  let classnameTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').getAttribute('class'));
   t.assert.equal(classnameTreeitem, 'is-highlight');
   let ariahiddenTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').getAttribute('aria-hidden')); //NOTE: this is (now) simply checking that the HTML source (which should start with aria-hidden) has not been changed at this stage
   t.assert.equal(ariahiddenTreeitem, 'true');
   await page.keyboard.press('ArrowDown');
-  classnameTree = await page.evaluate(() => document.querySelector('[data-label="test tree 1"]').className);
-  classnameTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').className)
+  classnameTree = await page.evaluate(() => document.querySelector('[data-label="test tree 1"]').getAttribute('class'));
+  classnameTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').getAttribute('class'))
   t.assert.equal(classnameTree, '');
   t.assert.equal(classnameTreeitem, 'is-highlight is-activedescendant');
   ariahiddenTreeitem = await page.evaluate(() => document.querySelector('[data-label="test tree 1"] [data-owns-id="treeitem1"]').hasAttribute('aria-hidden'));
@@ -214,7 +214,7 @@ await test('highlighting: subtreeitem not descendant', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
-  const classname = await page.evaluate(() => document.querySelector('[data-owns-id="root"] [data-owns-id="treeitem3"]').className);
+  const classname = await page.evaluate(() => document.querySelector('[data-owns-id="root"] [data-owns-id="treeitem3"]').getAttribute('class'));
   t.assert.equal(classname, 'is-highlight');
 });
 
