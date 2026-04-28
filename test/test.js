@@ -23,12 +23,12 @@ const browser = await puppeteer.launch({
 
 const page = await browser.newPage();
 
-test('check test setup', async (t) => {
+await test('check test setup', async (t) => {
   await page.goto('http://localhost:8080/test/');
   t.assert.equal(await page.title(), 'ARIA tree walker Test');
 });
 
-test('catch errors', async (t) => {
+await test('catch errors', async (t) => {
   page.on('pageerror', (exception) => {
     console.log(`Uncaught exception: "${exception}"`);
     t.assert.fail();
@@ -41,7 +41,7 @@ test('catch errors', async (t) => {
   t.assert.ok(true);
 });
 
-test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
+await test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
@@ -58,7 +58,7 @@ test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
 });
 
 
-test('In tree, navigating with ArrowDown on leaf', async (t) => {
+await test('In tree, navigating with ArrowDown on leaf', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown'); // item 1.1
@@ -75,7 +75,7 @@ test('In tree, navigating with ArrowDown on leaf', async (t) => {
   t.assert.equal(activedescendantId, 'treeitem3'); // item 1.1.1
 });
 
-test('In tree, navigating with ArrowRight and ArrowLeft', async (t) => {
+await test('In tree, navigating with ArrowRight and ArrowLeft', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
@@ -94,7 +94,7 @@ test('In tree, navigating with ArrowRight and ArrowLeft', async (t) => {
 
 // tab navigation
 
-test('In tree, navigating with Tab and Shift+Tab', async (t) => {
+await test('In tree, navigating with Tab and Shift+Tab', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
   await page.keyboard.press('ArrowDown');
@@ -116,7 +116,50 @@ test('In tree, navigating with Tab and Shift+Tab', async (t) => {
 
 // "Cousin" navigation
 
-// TODO: click exploration
+// click exploration
+
+await page.goto('http://localhost:8080/test/');
+await test('In tree, navigating with clicking: click moves down', async (t) => {
+  await page.click('[data-owns-id="root"]');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem1');
+});
+await test('In tree, navigating with clicking: tab moves across', async (t) => {
+  await page.keyboard.press('Tab');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem2');
+});
+await test('In tree, navigating with clicking: second click on leaf keeps position', async (t) => {
+  await page.click('[data-owns-id="treeitem2"]');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem2');
+});
+await test('In tree, navigating with clicking: second click on leaf triggered data-reverse', async (t) => {
+  let isReversed = await page.evaluate(() => {
+    return document.activeElement.hasAttribute('data-reverse');
+  });
+  t.assert.ok(isReversed);
+});
+await test('In tree, navigating with clicking: click on leaf with data-reverse moves up', async (t) => {
+  await page.click('[data-owns-id="treeitem2"]');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'root');
+});
+await test('In tree, navigating with clicking: reaching root in reverse clears data-reverse', async (t) => {
+  let isNotReversed = await page.evaluate(() => {
+    return !document.querySelector('[data-reverse]');
+  });
+  t.assert.ok(isNotReversed);
+});
+
 
 // TODO: deep links
 
@@ -182,7 +225,7 @@ await test('abort (remove) navigator', async (t) => {
   t.assert.equal(treeActivedescendantProp2, 'none');
 });
 
-test('teardown', async (t) => {
+await test('teardown', async (t) => {
   await page.close();
   await browser.close();
   await app.server.close();
