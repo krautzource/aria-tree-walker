@@ -180,8 +180,18 @@ await test('In tree, navigating with clicking: reaching root in reverse clears d
   t.assert.ok(isNotReversed);
 });
 
+// deep links
+await test('link target in tree: activation on visit', async (t) => {
+  await page.goto('http://localhost:8080/test/');
+  let classnameLink = await page.evaluate(() => {
+    const id = 'deepId'; // from html
+    document.body.insertAdjacentHTML('beforeend', `<a href="#${id}">link</a>`);
+    document.body.lastElementChild.click();
+    return document.querySelector('#' + id).getAttribute('class')
+  });
+  t.assert.equal(classnameLink, 'is-highlight is-activedescendant');
+});
 
-// TODO: deep links
 
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
