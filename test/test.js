@@ -48,10 +48,16 @@ await test('Initialization: added rect elements', async (t) => {
   });
   t.assert.equal(svgString,
     `
-      <g data-owns-id="treeitem1" data-owns="treeitem3" data-label="item 1.1" aria-hidden="true"><rect x="5" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="10" cy="10" r="5"></circle></g>
-      <g data-owns-id="treeitem2" data-label="item 1.2" aria-hidden="true"><rect x="15" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="20" cy="10" r="5"></circle></g>
-      <g data-owns-id="treeitem3" data-label="item 1.1.1" aria-hidden="true"><rect x="5" y="15" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="10" cy="20" r="5"></circle></g>
-    `);
+    <g data-owns-id="treeitem1" data-owns="treeitem3" data-label="item 1.1" aria-hidden="true"><rect x="5" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect>
+      <circle cx="10" cy="10" r="5"></circle>
+    </g>
+    <g data-owns-id="treeitem2" data-label="item 1.2" aria-hidden="true"><rect x="15" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect>
+      <circle cx="20" cy="10" r="5"></circle>
+    </g>
+    <g data-owns-id="treeitem3" data-label="item 1.1.1" aria-hidden="true"><rect x="5" y="15" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect>
+      <circle cx="10" cy="20" r="5"></circle>
+    </g>
+  `);
 });
 
 
