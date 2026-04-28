@@ -41,6 +41,20 @@ await test('catch errors', async (t) => {
   t.assert.ok(true);
 });
 
+await test('Initialization: added rect elements', async (t) => {
+  await page.goto('http://localhost:8080/test/');
+  let svgString = await page.evaluate(() => {
+    return document.querySelector('svg').innerHTML;
+  });
+  t.assert.equal(svgString,
+    `
+      <g data-owns-id="treeitem1" data-owns="treeitem3" data-label="item 1.1" aria-hidden="true"><rect x="5" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="10" cy="10" r="5"></circle></g>
+      <g data-owns-id="treeitem2" data-label="item 1.2" aria-hidden="true"><rect x="15" y="5" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="20" cy="10" r="5"></circle></g>
+      <g data-owns-id="treeitem3" data-label="item 1.1.1" aria-hidden="true"><rect x="5" y="15" width="10" height="10" data-rect="true" fill="transparent" stroke="none"></rect><circle cx="10" cy="20" r="5"></circle></g>
+    `);
+});
+
+
 await test('In tree, navigating with ArrowDown and ArrowUp', async (t) => {
   await page.goto('http://localhost:8080/test/');
   await page.keyboard.press('Tab');
