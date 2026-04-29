@@ -1,22 +1,23 @@
 {
   "name": "@krautzource/aria-tree-walker",
+  "type": "module",
   "version": "3.4.0",
   "description": "A lightweight walker for labeled aria(-owns) trees",
-  "main": "dist/aria-tree-walker.cjs.js",
-  "module": "dist/aria-tree-walker.esm.js",
+  "main": "dist/aria-tree-walker.js",
+  "module": "dist/aria-tree-walker.js",
   "types": "dist/aria-tree-walker.d.ts",
   "files": [
     "dist/*"
   ],
   "scripts": {
     "pretest": "npx rollup -c rollup.config.js",
-    "declarations": "npx tsc --declaration --emitDeclarationOnly --allowJs lib/navigator.js && cp lib/navigator.d.ts dist/aria-treewalker.d.ts",
-    "test": "ava",
+    "declarations": "npx tsc --declaration --emitDeclarationOnly --allowJs lib/navigator.js && npx tsc --declaration --emitDeclarationOnly --allowJs lib/abstractTree.js && cp lib/navigator.d.ts dist/aria-tree-walker.d.ts",
+    "test": "node --test ./test/test.js",
     "build": "npx rollup -c rollup.config.js",
     "postbuild": "npm run declarations",
-    "predocs": "npm run build && cp ./dist/aria-tree-walker.esm.js ./docs/treewalker.js",
+    "predocs": "npm run build && cp ./dist/aria-tree-walker.js ./docs/treewalker.js",
     "docs": "node docs/source/generateDocs.js",
-    "release": "standard-version"
+    "release": "commit-and-tag-version"
   },
   "repository": {
     "type": "git",
@@ -41,16 +42,15 @@
   "homepage": "https://github.com/krautzource/aria-tree-walker#readme",
   "devDependencies": {
     "@krautzource/sre-to-tree": "^2.0.2",
-    "ava": "^3.15.0",
     "jsdom": "^18.0.1",
     "mathjax-full": "^3.2.0",
-    "playwright": "^1.16.3",
-    "polka": "^0.5.2",
-    "rollup": "^2.59.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sirv": "^1.0.18",
+    "polka": "0.5.2",
+    "puppeteer": "24.40.0",
+    "rollup": "4.60.2",
+    "@rollup/plugin-terser": "1.0.0",
+    "sirv": "3.0.2",
     "speech-rule-engine": "^4.0.0-beta.2",
-    "standard-version": "^9.3.2",
-    "typescript": "^4.4.4"
+    "commit-and-tag-version": "12.7.1",
+    "typescript": "5.9.3"
   }
 }
