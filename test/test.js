@@ -181,15 +181,19 @@ await test('In tree, navigating with clicking: reaching root in reverse clears d
 });
 
 // deep links
+await page.goto('http://localhost:8080/test/');
 await test('link target in tree: activation on visit', async (t) => {
-  await page.goto('http://localhost:8080/test/');
-  let classnameLink = await page.evaluate(() => {
+  let [classname, role, tabindex, arialabel] = await page.evaluate(() => {
     const id = 'deepId'; // from html
     document.body.insertAdjacentHTML('beforeend', `<a href="#${id}">link</a>`);
     document.body.lastElementChild.click();
-    return document.querySelector('#' + id).getAttribute('class')
+    const target = document.querySelector('#' + id);
+    return [target.getAttribute('class'), target.getAttribute('role'), target.getAttribute('tabindex'), target.getAttribute('aria-label')]
   });
-  t.assert.equal(classnameLink, 'is-highlight is-activedescendant');
+  t.assert.equal(classname, 'is-highlight is-activedescendant');
+  t.assert.equal(role, 'img');
+  t.assert.equal(tabindex, '0');
+  t.assert.equal(arialabel, 'leaf 2');
 });
 
 
