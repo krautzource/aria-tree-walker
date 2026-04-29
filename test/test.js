@@ -196,6 +196,32 @@ await test('link target in tree: activation on visit', async (t) => {
   t.assert.equal(arialabel, 'leaf 2');
 });
 
+await test('link target in tree: tree structure after activation of target', async (t) => {
+  let [rootRole, rootLabel] = await page.evaluate(() => {
+    const element = document.querySelector(`[data-label="test tree 3"]`)
+    return [element.getAttribute('role'), element.hasAttribute('aria-label')]
+  });
+  t.assert.equal(rootRole, 'none');
+  t.assert.equal(rootLabel, false);
+
+  let [parentRole, parentHidden] = await page.evaluate(() => {
+    const element = document.querySelector(`[data-label="test tree 3"] [data-owns-id="treeitem1"]`)
+    return [element.getAttribute('role'), element.hasAttribute('aria-hidden')]
+  });
+  t.assert.equal(parentRole, 'none');
+  t.assert.equal(parentHidden, false);
+
+  let [siblingRole, siblingTabindex, siblingHidden] = await page.evaluate(() => {
+    const element = document.querySelector(`[data-label="test tree 3"] [data-owns-id="treeitem4"]`)
+    return [element.getAttribute('role'), element.getAttribute('tabindex'), element.hasAttribute('aria-hidden')]
+  });
+  t.assert.equal(siblingRole, 'img');
+  t.assert.equal(siblingTabindex, '0');
+  t.assert.equal(siblingHidden, false);
+
+});
+
+
 
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
