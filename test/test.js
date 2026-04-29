@@ -228,6 +228,13 @@ await test('link target in tree: tree structure after activation of target', asy
   t.assert.equal(linkHidden, false);
 });
 
+await test('link target in tree: navigation after activation of target', async (t) => {
+  await page.keyboard.press('ArrowRight');
+  let activedescendantId = await page.evaluate(() => {
+    return document.activeElement.getAttribute('data-owns-id');
+  });
+  t.assert.equal(activedescendantId, 'treeitem3');
+});
 
 await test('links: activating  with ENTER', async (t) => {
   await page.goto('http://localhost:8080/test/');
