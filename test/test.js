@@ -219,8 +219,14 @@ await test('link target in tree: tree structure after activation of target', asy
   t.assert.equal(siblingTabindex, '0');
   t.assert.equal(siblingHidden, false);
 
+  let [linkRole, linkTabindex, linkHidden] = await page.evaluate(() => {
+    const element = document.querySelector(`[data-label="test tree 3"] [data-owns-id="treeitem3"]`)
+    return [element.hasAttribute('role'), element.hasAttribute('tabindex'), element.hasAttribute('aria-hidden')]
+  });
+  t.assert.equal(linkRole, false);
+  t.assert.equal(linkTabindex, false);
+  t.assert.equal(linkHidden, false);
 });
-
 
 
 await test('links: activating  with ENTER', async (t) => {
